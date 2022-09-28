@@ -7,8 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-echo "helooo admin"
-    ?>
+    <h4>hello</h4>
 </body>
 </html>

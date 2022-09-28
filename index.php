@@ -2,6 +2,7 @@
 session_start();
 include 'login.inc.php';
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,33 +23,27 @@ include 'login.inc.php';
           <div class="card-body p-5 text-center">
 
             <div class="mb-md-5 mt-md-4 pb-5">
-              <form action="login.inc.php" method="POST">
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+                <form action="login.inc.php" method="POST">
+                      <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                      <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
-              <div class="form-outline form-white mb-4">
-                <input type="text" id="typeEmailX" name="uid" class="form-control form-control-lg"  value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>"/>
-                <label class="form-label" for="typeEmailX">Username</label>
-              </div>
+                        <div class="form-outline form-white mb-4">
+                            <input type="text" id="typeEmailX" name="uid" class="form-control form-control-lg"  value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>"/>
+                            <label class="form-label" for="typeEmailX">Username</label>
+                        </div>
 
-              <div class="form-outline form-white mb-4">
-                <input type="password" id="typePasswordX" name="pwd" class="form-control form-control-lg" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>"/>
-                <label class="form-label" for="typePasswordX">Password</label>
-              </div>
-              <div class="form-check d-flex justify-content-start mb-4">
-              <input class="form-check-input" type="checkbox" value="" id="form1Example3" name="remember"  <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?>/>
-              <label class="form-check-label" for="form1Example3"> Remember password </label>
-              </div>
-              <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="reset-password.php">Forgot password?</a></p>
-
-              <button class="btn btn-outline-light btn-lg px-5" name="submit"  type="submit">Login</button>
-</form>
-             
-
+                        <div class="form-outline form-white mb-4">
+                            <input type="password" id="typePasswordX" name="pwd" class="form-control form-control-lg" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>"/>
+                            <label class="form-label" for="typePasswordX">Password</label>
+                        </div>
+                        <div class="form-check d-flex justify-content-start mb-4">
+                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" name="remember"  <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?>/>
+                            <label class="form-check-label" for="form1Example3"> Remember password </label>
+                        </div>
+                      <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="reset-password.php">Forgot password?</a></p>
+                      <button class="btn btn-outline-light btn-lg px-5" name="submit"  type="submit">Login</button>
+                </form>
             </div>
-
-           
-
           </div>
         </div>
       </div>
