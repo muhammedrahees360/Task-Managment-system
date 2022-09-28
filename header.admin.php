@@ -23,7 +23,7 @@
         <a class="nav-link" href="#">Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">login/logout</a>
+        <a class="nav-link" href="#">logout</a>
       </li>
     </ul>
   </div>
