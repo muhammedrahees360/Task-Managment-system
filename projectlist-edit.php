@@ -1,6 +1,6 @@
 <?php
     include 'dbh.classes.php';
-    include 'userController.php';
+    include 'vendorController.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +12,13 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
 <body>
+<a href="insertuser.php">BACK</a>
         <h2>EDIT </h2>
 <?php
     if(isset($_GET['id']))
     {
         $id=$_GET['id'];
-        $project = new userController;
+        $project = new vendorController;
         
         $result =$project->insertuser($id);
     

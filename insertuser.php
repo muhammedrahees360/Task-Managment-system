@@ -1,23 +1,16 @@
 <?php
-   include "dbh.classes.php";
-    
-   include "userController.php";
-if(isset($_POST["submit"])){
- 
-    
-    
-   $id= 1;
-  
-    $user = new userController();
-    // Running error handlers and user signup
-   
-    $user->insertuser($id);
-    //Going to back to front page
-               
-   
-
-}   
-
+    include 'header.admin.php';
+    echo "<br>";
+    echo "<br>";
+    echo "<br>";
+    include "dbh.classes.php";
+    include "vendorController.php";
+        if(isset($_POST["submit"]))
+        { 
+            $id= 1;
+            $user = new vendorController();
+            $user->insertuser($id);
+        }   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +41,7 @@ if(isset($_POST["submit"])){
         <?php
      
         
-            $student = new userController;
+            $student = new vendorController;
           
             $result = $student->index();
             
@@ -82,7 +75,10 @@ if(isset($_POST["submit"])){
                                     <button type="submit" name="deleteUser" class="btn btn-danger" value="<?= $row["project_id"] ?>">Delete</button>
                             </form>
                         <td>
-                            <a href="" class="btn btn-success">VIEW</a>
+                        <form action="taskdisp.php" method="POST">
+                                    <button type="submit" name="viewproject" class="btn btn-success" value="<?= $row["project_id"] ?>">View</button>
+                            </form>
+                            
                         </td>
                     </tr>
 
@@ -96,30 +92,28 @@ if(isset($_POST["submit"])){
         <?php
                 $uid=$row["users_id"];
                 
-                $studentgetuser = new userController;
+                $studentgetuser = new vendorController;
                
                 $getuser = $studentgetuser->getuser($uid);
                 if($getuser){
                   
         ?>
-          <h1 style="
-    border: 2px solid black;
-    width: max-content;
-    padding: 10px;
-    margin: 10px;
-"> welcome <?=$getuser[0]['user_name']  ?></h1>
-          
+          <a href="index.php">BACK</a>  
+          <h1 style="border: 2px solid black;width: max-content;padding: 10px;margin: 10px;"> welcome <?= $_SESSION['useruid'] ?></h1>
+       
         <?php
                 }else{
                     echo "No record found";
                   }
         ?>
        
-       <form action="adduser.php" method="POST">
+       <form action="addvendor.php" method="POST">
                     <button type="submit" class="btn btn-lg btn-primary" style="float: right;margin-right: 10px;padding: 5px;" >+Add Vendor</button>
         </form>
-        <button type="button" class="btn btn-lg btn-primary" style="float: right;margin-right: 10px;padding: 5px;" >+Add User</button>
-        
+        <form action="addUserview.php" method="POST">
+        <button type="submit" name="deleteUser" class="btn btn-lg btn-primary" style="float: right;margin-right: 10px;padding: 5px;" value="<?= $row["user_id"] ?>" >+Add User</button>
+        </form>
+      
        
     </tbody>
   

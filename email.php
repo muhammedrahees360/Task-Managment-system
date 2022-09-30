@@ -32,13 +32,14 @@ class email
                     $mail->Body = $email_template;
                    
                     $mail->send();
-                    echo
-                        "
-                        <script>
-                        alert('send Successfully');
-                        document.location.href = 'index.php';
-                        </script>
-                        ";
+                    return;
+                    // echo
+                    //     "
+                    //     <script>
+                    //     alert('send Successfully');
+                    //     document.location.href = 'index.php';
+                    //     </script>
+                    //     ";
  
 
 }

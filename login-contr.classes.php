@@ -1,16 +1,11 @@
 <?php
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\Exception;
-// require 'phpmailer/Exception.php';
-// require 'phpmailer/PHPMailer.php';
-// require 'phpmailer/SMTP.php';
 require 'email.php';
 class loginContr extends dbh
 {
     
     public function loginUser($uid,$pwd)
         {
-        
+            
             $stmt= $this->connect()->prepare('SELECT pwd FROM tbuser WHERE user_name= ? OR email = ?;');
             if(!$stmt->execute(array($uid,$pwd)))
             {
@@ -68,7 +63,7 @@ class loginContr extends dbh
                     session_start();
                     $_SESSION['userid']=$user[0]["user_id"];
                     $_SESSION['useruid']=$user[0]["user_name"];
-
+                   
                     if($user[0]["user_role"] == 1)
                         {
                             header("location: insertuser.php?error=none");
@@ -132,39 +127,7 @@ class loginContr extends dbh
                     <a href='http://localhost/tms/updatepass.php?token=$token&email=$email'>Click Me</a>
                     ";
                     $sendmail->sendmail($subject,$email_template,$email);
-                    
-                    // $mail = new PHPMailer(true);
-  
-                    // $mail->isSMTP(); 
-                    // $mail->Host= 'smtp.gmail.com';                     //Set the SMTP server to send through
-                    // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    // $mail->Username   = 'afnatest18@gmail.com'; 
-                    // $mail->Password   = 'qdnmtberipkwzamo';  
-                 
-                    // $mail->SMTPSecure = 'ssl';
-                    // $mail->Port=465;
                 
-                
-                    // $mail->setFrom('afnatest18@gmail.com');
-                    // $mail->addAddress($email);
-                    // $mail->isHTML(true); 
-                    // $mail->Subject = 'Reset Password link';
-                    // $email_template = "
-                    // <h2>Hello</h2>
-                    // <h3>You are receiving this email as we received a password reset request for your account</h3>
-                    // <br/><br/>
-                    // <a href='http://localhost/tms/updatepass.php?token=$token&email=$email'>Click Me</a>
-                    // ";
-                    // $mail->Body = $email_template;
-                  
-                    // $mail->send();
-                    // echo
-                    //     "
-                    //     <script>
-                    //     alert('send Successfully');
-                    //     document.location.href = 'index.php';
-                    //     </script>
-                    //     ";
                     
                 }
              echo"token updated";
