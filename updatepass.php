@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,28 +16,16 @@
                 $token=$_GET['token'];
                 date_default_timezone_set('Asia/kolkata');
                 $date = date("Y-m-d");
-              
                 $resetpass = new loginContr();
-               
                 $result= $resetpass->resetpass($token,$date,$email);
-                
-                
-
-
-
              }
-
         if(isset($_POST['updatepassword']))
         {
            $password=$_POST['password'];
            $email=$_POST['email'];
-           $setpass = new loginContr();
-               
+           $setpass = new loginContr();               
            $result= $setpass->setpass($password,$email);
-           
-
         }
-    
     ?>  
 </body>
 </html>

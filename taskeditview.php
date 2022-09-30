@@ -37,8 +37,7 @@
                 </div>
                 <div class="col-md-4">
                         <label for="inputState" class="form-label">Choose you Priority</label>
-                        <select name="priority" id="inputState" class="form-select">
-                            
+                        <select name="priority" id="inputState" class="form-select">                            
                             <option value="1">Critical</option>
                             <option value="2">Important</option>
                             <option value="3">Normal</option>

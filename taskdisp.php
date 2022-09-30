@@ -17,11 +17,10 @@
             <title>Document</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         </head>
-        <body>
-                <a href="insertuser.php">BACK</a> 
+        <body style="padding: 3vw;">
+                <a  class="btn btn-primary" href="insertuser.php">BACK</a> 
                 <h2><hr> Project Progress</h2>
                 <?php
-            
                         if(isset($_POST['viewproject']))
                             {
                                 $project_id=$_POST['viewproject'];
@@ -38,17 +37,14 @@
                                     {
                                         $_SESSION['pmemail']=$row['pm_email'];
                                         $_SESSION['projectname']=$row["project_name"];
-                                        $_SESSION['projectmanager']=$row["project_manager"]; 
-                            
+                                        $_SESSION['projectmanager']=$row["project_manager"];                            
                 ?>
                 <div style="border: 1px solid black;margin: 30px;padding: 30px;">
                         <dl class="row">
                             <dt class="col-sm-3">Vendor Name</dt>
                             <dd class="col-sm-9"><?= $row["vendor_name"] ?></dd>
-
                             <dt class="col-sm-3">Project Name</dt>
                             <dd class="col-sm-9"><?= $row["project_name"] ?></dd>
-
                             <dt class="col-sm-3">Project Manager</dt>
                             <dd class="col-sm-9"><?= $row["project_manager"] ?></dd>
                             <dt class="col-sm-3">E-mail</dt>
@@ -64,8 +60,7 @@
                     }else
                         {
                             echo "No record found";
-                        }
-                    
+                        }     
                 ?>
                 <h2><center>Task List</center><hr></h2>
                 <form style="float:right;padding:5px" action="newtaskview.php" method="POST">

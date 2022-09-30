@@ -19,28 +19,21 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
-    <body>
-    <a href="index.php">BACK</a>  
-        <h4 style="border: 2px solid black;width: max-content;padding: 10px;margin: 10px;"> welcome <?= $_SESSION['useruid']  ?></h4>
-        
+    <body style="padding: 3vw;">
+        <h4 style="width: max-content;padding: 10px;margin: 10px;"> Welcome <?= $_SESSION['useruid']  ?></h4>
         <h2><hr> Project Progress</h2>
         <?php
-     
-        
             $project = new userfunction;
-          
             $result = $project->viewProject();
-            
             if($result)
             {
                 foreach($result as $row)
                   {
                     $_SESSION['projectid']=$row['project_id'];
                     $_SESSION['projectname']=$row["project_name"];
-                    $_SESSION['projectmanager']=$row["project_manager"]; 
-                    
+                    $_SESSION['projectmanager']=$row["project_manager"];             
         ?>
-        <div style="border: 1px solid black;margin: 30px;padding: 30px;">
+        <div style="border: 2px solid black;margin: 30px;padding: 30px;border-radius: 10px;">
                 <dl class="row">
                     <dt class="col-sm-3">Vendor Name</dt>
                     <dd class="col-sm-9"><?= $row["vendor_name"] ?></dd>
@@ -61,7 +54,7 @@
         <?php
                   }
             }else{
-                    echo "No record found";
+                header("location: insertuser.php?error=stmtfailed");
                   }
               
         ?>
@@ -80,8 +73,6 @@
             <th></th>
             <th></th>
             <th></th>
-
-
         </tr>
     </thead>
     <tbody>
@@ -124,7 +115,7 @@
                     <?php
                   }
                 }else{
-                    echo "No record found";
+                    header("location: insertuser.php?error=stmtfailed");
                 }
         ?>  
     </tbody> 

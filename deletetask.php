@@ -17,7 +17,6 @@ if(isset($_POST['deletetask']))
         exit(0);
     }
 }
-
 if(isset($_POST['taskcomment']))
 {
     $comment = $_POST['taskcomment'];

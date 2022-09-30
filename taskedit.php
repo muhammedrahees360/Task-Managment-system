@@ -9,9 +9,7 @@ if(isset($_POST['editTask']))
         'enddate'=> $_POST['enddate'],
         'priority'=> $_POST['priority']
     ];
-   
     $user = new taskContr;
-  
     $result = $user->update($inputData,$task_id);
  }
 

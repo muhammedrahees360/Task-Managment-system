@@ -3,30 +3,7 @@
 include 'email.php';
 class vendorController extends Dbh {
 
-    public function getimage()
-    {
-            $id =1;
-           
-            $update=$this->connect()->prepare("SELECT * FROM image  ;");
-             
-                if(!$update->execute())
-                        {
-                            $update = null;
-                            echo "not worked";
-                            header("location: viewimage.php?error=stmtfailed");
-                            exit();
-                        }
-                       
-                        if($update->rowCount() > 0)
-                        {
-                            $data = $update->fetchAll(PDO::FETCH_ASSOC);
-                          
-                            return $data;
-                        }else{
-                                return false;
-                            }
-               
-    }
+   
     
   
         public function index()
@@ -127,7 +104,7 @@ class vendorController extends Dbh {
             header("location: admin.php?error=stmtfailedinsertuser");
             exit();
         }
-        echo $stmt->rowCount();
+     
         if($stmt->rowCount() == 0){
             $stmt = null;
             

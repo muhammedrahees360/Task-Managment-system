@@ -2,10 +2,8 @@
 require 'email.php';
 class loginContr extends dbh
 {
-    
     public function loginUser($uid,$pwd)
-        {
-            
+        {  
             $stmt= $this->connect()->prepare('SELECT pwd FROM tbuser WHERE user_name= ? OR email = ?;');
             if(!$stmt->execute(array($uid,$pwd)))
             {
@@ -16,7 +14,6 @@ class loginContr extends dbh
             if($stmt->rowCount() == 0)
             {
                 $stmt = null;
-            
                 header("location: index.php?error=usernotfound");
                 exit();
             }
@@ -74,26 +71,20 @@ class loginContr extends dbh
                                 header("location: user.php?error=none");
                                 exit();
                             }
-        
                 }
                 $stmt= null;
         }
     public function forgetpass($email)
     {
                 date_default_timezone_set('Asia/kolkata');
-                $date=date('Y-m-d');
-                
+                $date=date('Y-m-d');    
                 $token = md5(rand());     
-                $checkemail= $this->connect()->prepare("SELECT * FROM tbuser WHERE  email =?;");
-               
-                
-                if(! $checkemail->execute(array($email))){
-                    
+                $checkemail= $this->connect()->prepare("SELECT * FROM tbuser WHERE  email =?;"); 
+                if(! $checkemail->execute(array($email))){                  
                     $checkemail = null;
                     header("location: index.php?error=stmtfailed");
                     exit();
-                }
-                
+                }               
                 if( $checkemail->rowCount() == 0){
                     $checkemail = null;
                     echo
@@ -105,14 +96,11 @@ class loginContr extends dbh
                     ";
                     // header("location: index.php?error=invaliemailentered");
                     exit();
-                }
-                
+                }                
                 $data =  $checkemail->fetchAll(PDO::FETCH_ASSOC);  
                 $name=$data[0]['user_name'];
-                $email=$data[0]['email'];
-               
-                $update_token =$this->connect()->prepare("UPDATE tbuser SET resettoken= ? ,resettokenexpire= ? WHERE email=?");
-                
+                $email=$data[0]['email'];              
+                $update_token =$this->connect()->prepare("UPDATE tbuser SET resettoken= ? ,resettokenexpire= ? WHERE email=?");               
                 if(!$update_token->execute(array($token,$date,$email))){
                     $update_token = null;
                     header("location: index.php?error=stmtfailed");
@@ -126,9 +114,7 @@ class loginContr extends dbh
                     <br/><br/>
                     <a href='http://localhost/tms/updatepass.php?token=$token&email=$email'>Click Me</a>
                     ";
-                    $sendmail->sendmail($subject,$email_template,$email);
-                
-                    
+                    $sendmail->sendmail($subject,$email_template,$email);                    
                 }
              echo"token updated";
                 print_r($data);
@@ -140,17 +126,11 @@ class loginContr extends dbh
                 </script>
                 ";
     }
-   
     public function resetpass($token,$date,$email)
     {
-
-
         $stmt= $this->connect()->prepare("SELECT * FROM tbuser WHERE resettoken = ? AND resettokenexpire=?;");
-      
                 if($stmt->execute(array($token,$date)))
                 {
-                  
-               
                         if($stmt->rowCount() == 1)
                         {
                             echo "
@@ -171,8 +151,7 @@ class loginContr extends dbh
                             document.location.href = 'index.php';
                             </script>
                             ";
-                        }
-                        
+                        }      
                 }else{
                             echo
                             "
@@ -181,26 +160,20 @@ class loginContr extends dbh
                             document.location.href = 'index.php';
                             </script>
                             ";
-                            }
-                
-                              
+                            }                           
     }
     public function setpass($password,$email){
         $null="NULL";
         $stmt= $this->connect()->prepare("UPDATE tbuser SET pwd=? ,resettoken=?,resettokenexpire=NULL WHERE email=? ;");
-      
                 if($stmt->execute(array($password,$null,$email)))
                 {
-                  
                     echo
                     "
                     <script>
                     alert('password updated');
                     document.location.href = 'index.php';
                     </script>
-                    ";
-                       
-                        
+                    ";         
                 }else{
                             echo
                             "
@@ -210,12 +183,7 @@ class loginContr extends dbh
                             </script>
                             ";
                             }
-                
-
-
     }
-
-
 }
 
 

@@ -14,7 +14,6 @@ if(isset($_POST['deleteUser']))
                 header("location: insertuser.php?errorindeletecolumn");
                 exit();
              }
-
     }
 if(isset($_POST['update']))
         {
@@ -34,7 +33,6 @@ if(isset($_POST['update']))
             {
                 header("location: insertuser.php");
             }else{
-
                 }
         }
 if(isset($_POST["addvendor"]))
@@ -46,7 +44,6 @@ if(isset($_POST["addvendor"]))
         $pm_email=$_POST['pemail'];
         $duedate=$_POST['duedate'];
         $description=$_POST['description'];
-        $setuser = new vendorController;
-        
+        $setuser = new vendorController;       
         $result = $setuser->setuser($username,$vendorname,$projectmanager,$projectname,$pm_email,$duedate,$description);
     }   

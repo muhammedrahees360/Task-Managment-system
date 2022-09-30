@@ -3,7 +3,29 @@
 require 'email.php';
 class userfunction extends Dbh 
         {
-  
+            public function getimage($taskid)
+            {
+               
+                    $update=$this->connect()->prepare("SELECT image_url FROM image WHERE task_id = ?");
+                
+                        if(!$update->execute(array($taskid)))
+                                {
+                                    $update = null;
+                                    echo "not worked";
+                                    header("location: viewimage.php?error=stmtfailed");
+                                    exit();
+                                }
+                               
+                                if($update->rowCount() > 0)
+                                {
+                                    $data = $update->fetchAll(PDO::FETCH_ASSOC);
+                                  
+                                    return $data;
+                                }else{
+                                        return false;
+                                    }
+                       
+            }
                 public function viewProject()
                         {
                                $user_id= $_SESSION['userid'];
@@ -23,7 +45,7 @@ class userfunction extends Dbh
                                       
                                        return $data;
                                    }else{
-                                           echo "more than 1 row dispalyed";
+                                           echo "No project is Assigned";
                                            exit();
                                        }
 
@@ -209,8 +231,15 @@ class userfunction extends Dbh
                             $stmt = null;
                             header('location:taskdisp.php?error=somethingWrong!');
                         }
+                        $role=1;
+                        $stmtemail=$this->connect()->prepare("SELECT * FROM tbuser WHERE user_role=?");
+                        if(!$stmtemail->execute(array($role))){
+                            $stmtemail = null;
+                            header('location:taskdisp.php?error=somethingWrong!');
+                        }
+                        $data = $stmtemail->fetchAll(PDO::FETCH_ASSOC); 
                         $id=$_SESSION['projectidadmin'];
-                        $email="afnarahim.mec@gmail.com";
+                        $email=$data[0]['email'];
                         $subject="Change in status of Task ";
                         $sendmail = new email;
                         $sendmail->sendmail($subject,$email_template,$email);

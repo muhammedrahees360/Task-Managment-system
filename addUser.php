@@ -11,10 +11,10 @@
          $user = new userContr;
          $result = $user->create($inputData);
          if($result)
-         {
-            header('location:displayuser.php?value added sucesssfully');
-            }else
             {
-            header('location:displayuser.php?error=somethingWrong!');
-            }
+               header('location:displayuser.php?value added sucesssfully');
+            }else
+               {
+               header('location:displayuser.php?error=somethingWrong!');
+               }
 }

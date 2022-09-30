@@ -14,8 +14,7 @@
             <p>An email will be send to you with instrunction on how to reset your password</p>
             <form action="login.inc.php" method="POST">
                 <input type="email" class="form-control" name="email" placeholder="Enter your email address">
-                <button type="submit" class="btn btn-lg btn-primary"  name="reset-request-submit">Submit</button>
-                
+                <button type="submit" class="btn btn-lg btn-primary"  name="reset-request-submit">Submit</button>       
             </form>
         </section>
     </div>
