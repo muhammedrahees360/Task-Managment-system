@@ -1,7 +1,7 @@
 <?php
 include('dbconn.php');
 include_once('taskController.php');
- if(isset($_POST['editTask']))
+if(isset($_POST['editTask']))
  { 
     $task_id = $_POST['task_id'];
     $inputData = [
@@ -12,3 +12,8 @@ include_once('taskController.php');
     $user = new taskContr;
     $result = $user->update($inputData,$task_id);
  }
+
+
+
+
+ 

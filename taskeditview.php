@@ -12,6 +12,7 @@
 </head>
 <body>
 <div class="container">
+<a href="taskdisp.php?id=<?=$_SESSION['projectidadmin']?>">BACK</a>
   <h3>Edit Task details</h3>
   <?php
     if(isset($_GET['id'])){
@@ -36,8 +37,7 @@
                 </div>
                 <div class="col-md-4">
                         <label for="inputState" class="form-label">Choose you Priority</label>
-                        <select name="priority" id="inputState" class="form-select">
-                            <option selected>Choose...</option>
+                        <select name="priority" id="inputState" class="form-select">                            
                             <option value="1">Critical</option>
                             <option value="2">Important</option>
                             <option value="3">Normal</option>
