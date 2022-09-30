@@ -9,7 +9,7 @@
     <title>Document</title>
 </head>
   <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-info">
+  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-info" style="padding-left: 4vw;">
     <a class="navbar-brand" href="user.php"> &nbsp;Manager Desk</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>

@@ -20,25 +20,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
     <body style="padding: 3vw;">
-    <a  class="btn btn-primary" href="index.php">BACK</a>  
         <h4 style="width: max-content;padding: 10px;margin: 10px;"> Welcome <?= $_SESSION['useruid']  ?></h4>
-        
         <h2><hr> Project Progress</h2>
         <?php
-     
-        
             $project = new userfunction;
-          
             $result = $project->viewProject();
-            
             if($result)
             {
                 foreach($result as $row)
                   {
                     $_SESSION['projectid']=$row['project_id'];
                     $_SESSION['projectname']=$row["project_name"];
-                    $_SESSION['projectmanager']=$row["project_manager"]; 
-                    
+                    $_SESSION['projectmanager']=$row["project_manager"];             
         ?>
         <div style="border: 2px solid black;margin: 30px;padding: 30px;border-radius: 10px;">
                 <dl class="row">
@@ -80,8 +73,6 @@
             <th></th>
             <th></th>
             <th></th>
-
-
         </tr>
     </thead>
     <tbody>

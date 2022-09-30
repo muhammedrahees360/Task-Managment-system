@@ -50,7 +50,7 @@
                 <td> <?= $row["project_name"] ?> </td>           
                 <td> <?= $row["project_manager"] ?>  </td>      
                 <td> <?= $row["pm_email"] ?> </td>       
-                <td><a href="projectlist-edit.php?id=<?= $row["project_id"] ?>" class="btn btn-success">EDIT</a> </td>                            
+                <td><a href="projectlist-edit.php?id=<?= $row["project_id"] ?>" class="btn btn-success">Edit</a> </td>                            
                 <td><form action="projectupdate.php" method="POST">
                         <button type="submit" name="deleteUser" class="btn btn-danger" value="<?= $row["project_id"] ?>">Delete</button>
                     </form>      
@@ -74,7 +74,6 @@
                 $getuser = $studentgetuser->getuser($uid);
                 if($getuser){          
         ?>
-          <a class="btn btn-primary" href="index.php">Back</a>  
           <h1 style="width: max-content;padding: 10px;margin: 10px;"> Welcome <?= $_SESSION['useruid'] ?></h1>
         <?php
                 }else{
