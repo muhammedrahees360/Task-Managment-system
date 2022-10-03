@@ -175,14 +175,14 @@ class loginContr extends dbh
                     </script>
                     ";         
                 }else{
-                        echo
-                        "
-                        <script>
-                        alert('execution not working');
-                        document.location.href = 'index.php';
-                        </script>
-                        ";
-                     }
+                            echo
+                            "
+                            <script>
+                            alert('execution not working');
+                            document.location.href = 'index.php';
+                            </script>
+                            ";
+                            }
     }
 }
 

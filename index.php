@@ -1,6 +1,8 @@
+
 <?php
 session_start();
 include 'login.inc.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +24,12 @@ include 'login.inc.php';
                 <form action="login.inc.php" method="POST">
                       <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                       <p class="text-white-50 mb-5">Please enter your login and password!</p>
+
                         <div class="form-outline form-white mb-4">
                             <input type="text" id="typeEmailX" name="uid" class="form-control form-control-lg"  value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>"/>
                             <label class="form-label" for="typeEmailX">Username</label>
                         </div>
+
                         <div class="form-outline form-white mb-4">
                             <input type="password" id="typePasswordX" name="pwd" class="form-control form-control-lg" value="<?php if(isset($_COOKIE["userpassword"])) { echo $_COOKIE["userpassword"]; } ?>"/>
                             <label class="form-label" for="typePasswordX">Password</label>
@@ -38,6 +42,9 @@ include 'login.inc.php';
                       <button class="btn btn-outline-light btn-lg px-5" name="submit"  type="submit">Login</button>
                 </form>
             </div>
+
+           
+
           </div>
         </div>
       </div>
