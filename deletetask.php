@@ -1,14 +1,15 @@
 <?php
-include('dbconn.php');
+include('dbh.classes.php');
 include_once('taskController.php');
 if(isset($_POST['deletetask']))
 {
     $task_id = $_POST['deletetask'];
     $user = new taskContr;
     $result = $user->delete($task_id);
+    $id=$_SESSION['projectidadmin'];
     if($result)
     {
-        header("Location:taskdisp.php?error=datadeleted");
+        header("Location:taskdisp.php?id=$id");
         exit(0);
     }
     else
