@@ -62,9 +62,7 @@
                 </tr>
         <?php
                   }
-            }else{
-                header("location:insertuser.php?something went wrong");
-                  }      
+            }   
         ?>
         <?php
                 $uid=$row["users_id"];
@@ -76,9 +74,7 @@
         ?>
           <h1 style="width: max-content;padding: 10px;margin: 10px;"> Welcome <?= $_SESSION['useruid'] ?></h1>
         <?php
-                }else{
-                   header("location:insertuser.php?something went wrong");
-                  }
+                }
         ?>
        <form action="addvendor.php" method="POST">
             <button type="submit" class="btn btn btn-primary" style="float: right;margin-right: 10px;padding: 5px;" >+Add Vendor</button>
