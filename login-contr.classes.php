@@ -20,8 +20,14 @@ class loginContr extends dbh
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if($data[0]["pwd"] !== $pwd){
                 $stmt = null;
-                header("location: index.php?error=wrongpassword");
-                exit();
+                echo
+                    "
+                    <script>
+                    alert('Wrong Password');
+                    document.location.href = 'index.php';
+                    </script>
+                    ";
+                
             }elseif($data[0]["pwd"] == $pwd)
                 {
                     $stmt= $this->connect()->prepare('SELECT * FROM tbuser WHERE user_name= ? OR email = ? AND pwd = ?;');
@@ -117,11 +123,11 @@ class loginContr extends dbh
                     $sendmail->sendmail($subject,$email_template,$email);                    
                 }
              echo"token updated";
-                print_r($data);
+              
                 echo
                 "
                 <script>
-                alert('token not entered');
+                alert('link is send to your email');
                 document.location.href = 'index.php';
                 </script>
                 ";
@@ -134,7 +140,8 @@ class loginContr extends dbh
                         if($stmt->rowCount() == 1)
                         {
                             echo "
-                            <form  action='updatepass.php' method='POST'>
+                            <form  action='updatepass.php' method='POST' style='
+                            text-align: center;'>
                                 <h3>Create new password</h3>
                                 <input type='password' placeholder='New password' name='password'>
                                 <button type='submit' name='updatepassword'>UPDATE</button>
@@ -175,14 +182,14 @@ class loginContr extends dbh
                     </script>
                     ";         
                 }else{
-                            echo
-                            "
-                            <script>
-                            alert('execution not working');
-                            document.location.href = 'index.php';
-                            </script>
-                            ";
-                            }
+                        echo
+                        "
+                        <script>
+                        alert('execution not working');
+                        document.location.href = 'index.php';
+                        </script>
+                        ";
+                     }
     }
 }
 
