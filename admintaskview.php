@@ -33,7 +33,9 @@
             <dd class="col-sm-9">Priority: <?=$priority?></dd>                    
         </dl>
     </div>
-    <div style="border: 1px solid black;margin: 10px;padding: 10px;">
+
+    <div style="margin: 10px;padding: 10px;">
+
         <dl class="row">
             <dt class="col-sm-3">Description:</dt>
             <dd class="col-sm-9"><?= $result[0]['description']?></dd>

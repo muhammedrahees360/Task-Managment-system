@@ -30,6 +30,7 @@ class userContr extends dbh {
                 if($projectQuery->rowCount() > 0){
                     $data = $projectQuery->fetchAll(PDO::FETCH_ASSOC);
 
+
                    return $data;
 
                     }else{
