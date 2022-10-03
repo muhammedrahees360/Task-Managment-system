@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('dbconn.php');
+include('dbh.classes.php');
 include_once('taskController.php');
 if(isset($_POST['savetask']))
     {    
@@ -37,8 +37,14 @@ if(isset($_POST['savetask']))
                                         {
                                             if($img_size> 125000)
                                                 {
-                                                    $em = "sorry your file is too large!";
-                                                    header("Location: addfile.php?error=$em") ;
+                                                    echo
+                                                    "
+                                                    <script>
+                                                    alert('image is too large');
+                                                    document.location.href = 'addfile.php?';
+                                                    </script>
+                                                    ";
+                                                   
                                                 }else{
                                                             $img_ex = pathinfo($img_name,PATHINFO_EXTENSION);
                                                             $img_ex_lc =strtolower($img_ex);                        

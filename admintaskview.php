@@ -12,7 +12,7 @@
     echo "<br>";
     echo "<br>";
     echo "<br>";
-    include('dbconn.php');
+    include('dbh.classes.php');
     include_once('taskController.php');
     $task_id = $_GET['id']; 
     $_SESSION['taskid']=$task_id;
@@ -33,9 +33,7 @@
             <dd class="col-sm-9">Priority: <?=$priority?></dd>                    
         </dl>
     </div>
-
     <div style="margin: 10px;padding: 10px;">
-
         <dl class="row">
             <dt class="col-sm-3">Description:</dt>
             <dd class="col-sm-9"><?= $result[0]['description']?></dd>

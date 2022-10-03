@@ -6,7 +6,6 @@
     echo "<br>";
     echo "<br>";
     echo "<br>";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,6 +56,7 @@
               
         ?>
          <h4>Task List<hr></h4>
+   
 <table class="table table-striped table-hover">
     <thead>
         <tr>
