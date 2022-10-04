@@ -11,7 +11,7 @@ if(isset($_POST['savetask']))
                 'priority'=> $_POST['priority'],
                 't_status'=> $_POST['t_status']
             ];
-            $user = new taskContr;  
+            $user = new taskContr; 
             $result = $user->create($inputData);
             $email=$_SESSION['pmemail'];
             $subject=  'Task created in'.$_SESSION['projectname'];
