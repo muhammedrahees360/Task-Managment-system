@@ -9,7 +9,7 @@
 <body>
 <?php
         include("dbh.classes.php");
-        include("login-contr.classes.php");
+        include("controller/login-contr.classes.php");
         if(isset($_GET['email'])&& isset($_GET['token']))
              {
                 $email=$_GET['email'];

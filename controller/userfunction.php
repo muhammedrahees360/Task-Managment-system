@@ -3,10 +3,11 @@
 require 'email.php';
 class userfunction extends Dbh 
         {
-            public function getimage($taskid)
+            
+            public function getimage($taskid,$variabe,$table,$value) 
             {
                
-                    $update=$this->connect()->prepare("SELECT image_url FROM image WHERE task_id = ?");
+                    $update=$this->connect()->prepare("SELECT $variabe FROM $table WHERE $value = ?");
                 
                         if(!$update->execute(array($taskid)))
                                 {
@@ -26,11 +27,11 @@ class userfunction extends Dbh
                                     }
                        
             }
-                public function viewProject()
+                public function viewProject($user_id,$table,$value)
                         {
-                               $user_id= $_SESSION['userid'];
                                
-                               $studentQuery =$this->connect()->prepare( "SELECT * FROM tbproject_list WHERE users_id=?;");
+                               
+                               $studentQuery =$this->connect()->prepare( "SELECT * FROM $table WHERE $value=?;");
                            
                                if(!$studentQuery->execute(array($user_id)))
                                    {
@@ -57,14 +58,18 @@ class userfunction extends Dbh
                    
                     if(!$studentQuery->execute(array($taskid))){
                         $studentQuery = null;
+                       
                         header("location: taskdisp.php?id=$taskid");
                         exit();
                     } 
+                   
                     if($studentQuery->rowCount() > 0){
+                        
                         $data = $studentQuery->fetchAll(PDO::FETCH_ASSOC);
-                  
+                        
                         return $data;
                         }else{
+                        
                             return false;
                         }
                 }
@@ -243,17 +248,6 @@ class userfunction extends Dbh
                         $subject="Change in status of Task ";
                         $sendmail = new email;
                         $sendmail->sendmail($subject,$email_template,$email);
-                        echo
-                        "
-                        <script>
-                        alert('status  updated');
-                        document.location.href = 'user.php';
-                        </script>
-                        ";
+                        header("location:user.php?success=statusupdated");
                     }
-
-
-
-
-            
         }
