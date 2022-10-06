@@ -9,18 +9,18 @@
     <title>Document</title>
 </head>
   <body>
-  <nav class="navbar fixed-top navbar-expand-sm navbar-light bg-info" style="padding-left: 4vw;">
-    <a class="navbar-brand" href="user.php"> &nbsp;Manager Desk</a>
+  <nav style="background-color: black!important;padding-left: 4vw;"  class="navbar fixed-top navbar-expand-sm navbar-light bg-info" >
+    <a style="color:white!important" class="navbar-brand" href="user.php"> &nbsp;Manager Desk</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="user.php">Dashboard</a>
+          <a style="color:white!important" class="nav-link" href="user.php">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php">logout</a>
+          <a style="color:white!important" class="nav-link" href="logout.inc.php">Logout</a>
         </li>
       </ul>
     </div>

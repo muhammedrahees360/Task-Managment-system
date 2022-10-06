@@ -1,10 +1,13 @@
 <?php
+    session_start();
     include 'dbh.classes.php';
-    include 'vendorController.php';
+    include 'controller/vendorController.php';
+    if(isset( $_SESSION['useruid'])){
     include 'header.admin.php';
     echo "<br>";
     echo "<br>";
     echo "<br>";
+    $date = date('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +21,7 @@
 <body style="padding:4vw">
 <a class="btn btn-primary" href="insertuser.php" >Back</a>
 <div style="margin-top:20px">
-        <h2>EDIT </h2>
+        <h2><center>EDIT </center></h2>
 <?php
     if(isset($_GET['id']))
     {
@@ -32,28 +35,21 @@
         <!-- <input type="hidden" name="users_id" value=" $result['users_id']"> -->
             <div class="form-row" >
                 <div class="form-group col-md-6" style="margin: auto;">
-                <label for="inputname">Vendor Name</label>
+                <label for="inputname">Vendor</label>
                 <input type="text" class="form-control"  value="<?= $result[0]['vendor_name']?>" name="vendorname" >
             </div>
             <br>
             <div class="form-group col-md-6" style="margin: auto;">
-            <label for="inputname">Project Name</label>
+            <label for="inputname">Project</label>
             <input type="text" class="form-control" value="<?= $result[0]['project_name']?>" name="projectname" >
             </div>
             <br>
-        <div class="form-group col-md-6" style="margin: auto;">
-        <label for="inputname">Project Manager</label>
-        <input type="text" class="form-control"   value="<?= $result[0]['project_manager']?>" name="projectmanager" >
-        </div>
-        <br>
-        <div class="form-group col-md-6" style="margin: auto;">
-        <label for="inputname">Email</label>
-        <input type="email" class="form-control"  value="<?= $result[0]['pm_email']?>"  name="email" >
-        </div>
+       
+    
         <br>
         <div class="form-group col-md-6" style="margin: auto;">
         <label for="inputname">Due Date</label>
-        <input type="date" class="form-control" value="<?= $result[0]['end_date']?>"  name="duedate" >
+        <input type="date"  min="<?php echo $date; ?>" class="form-control" value="<?= $result[0]['end_date']?>"  name="duedate" >
         </div>
         <br>
         <div class="form-group col-md-6" style="margin: auto;">
@@ -68,14 +64,20 @@
         <?php 
                     }
                     else{
-                        echo "<h4>Record not found</h4>";
+                        echo "<h4>no result</h4>";
                     }
             }
             else{
-                echo "<h4>Something went wrong</h4>";
+                echo "<h4>no id </h4>";
             }
 
         ?>
 </div>
 </body>
 </html>
+<?php
+    }else{
+        header("location:index.php");
+    }
+
+?>

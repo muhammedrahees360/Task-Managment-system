@@ -1,6 +1,9 @@
 <?php
- include "dbh.classes.php";
- include "taskController.php";
+session_start();
+ include('dbh.classes.php');
+ include "controller/taskController.php";
+ if(isset( $_SESSION['useruid'])){
+    $date = date('Y-m-d');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,9 +16,9 @@
 <body style="padding:4vw"> 
 <a class="btn btn-primary" href="taskdisp.php?id=<?=$_SESSION['projectidadmin']?>">Back</a> 
     <h2><center>New Task</center></h2><hr>
-<form class="row g-3" method="POST" action="addfile.php" enctype="multipart/form-data">
+<form class="row g-3" method="POST" action="taskmodel.php" enctype="multipart/form-data">
   <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Task Tile</label>
+      <label for="inputEmail4" class="form-label">Title</label>
       <input type="text" class="form-control" required id="inputEmail4" name="task_title">
   </div>
   <div class="col-md-6">
@@ -24,11 +27,11 @@
   </div>
   <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Due Date</label>
-      <input type="date" class="form-control" required id="inputPassword4" name="enddate">
+      <input type="date" min="<?php echo $date; ?>"  class="form-control" required id="inputPassword4" name="enddate">
   </div>
 
     <div class="col-md-4">
-         <label for="inputState" class="form-label">Choose you Priority</label>
+         <label for="inputState" class="form-label">Priority</label>
             <select name="priority" id="inputState" class="form-select">
              
                 <option value="1">Critical</option>
@@ -38,7 +41,7 @@
             </select>
     </div>
     <div class="col-md-4">
-         <label for="inputState" class="form-label">Task Status</label>
+         <label for="inputState" class="form-label">Status</label>
             <select name="t_status" id="inputState" class="form-select">               
                 <option value="1">Started</option>
                 <option value="2">On-progress</option>
@@ -56,3 +59,9 @@
 </form>
 </body>
 </html>
+<?php
+    }else{
+        header("location:index.php");
+    }
+
+?>  

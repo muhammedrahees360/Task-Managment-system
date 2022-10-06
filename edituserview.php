@@ -1,6 +1,6 @@
 <?php
- include "dbh.classes.php";
- include "userController.php";
+ include('dbh.classes.php');
+ include "controller/userController.php";
  include 'header.admin.php';
     echo "<br>";
     echo "<br>";
@@ -26,7 +26,7 @@
         $result = $user->edit($user_id);
         if($result){
           ?> 
-              <form class="form-horizontal" action="edituser.php" method="POST">
+              <form class="form-horizontal" action="adduser.model.php" method="POST">
               <input type="hidden" name="user_id" value="<?= $result[0]['user_id']?>">
                 <div class="form-group">
                   <label class="control-label col-sm-2" for="username">Username</label>
@@ -39,6 +39,12 @@
                   <label class="control-label col-sm-2" for="email">Email</label>
                   <div class="col-sm-10">          
                     <input type="email" class="form-control" id="email" value="<?=$result[0]['email']?>" name="email">
+                  </div>
+                </div><br>
+                <div class="form-group">
+                  <label class="control-label col-sm-2" for="email">Full Name</label>
+                  <div class="col-sm-10">          
+                    <input type="text" class="form-control" id="email" value="<?=$result[0]['full_name']?>" name="full_name">
                   </div>
                 </div><br>
                 <div class="form-group">        

@@ -2,18 +2,19 @@
 session_start();
 require 'email.php';
 class taskContr extends dbh {
-    public function getimage($taskid)
+    public function getimage($taskid,$variabe,$table,$value)
             {     
-                    $update=$this->connect()->prepare("SELECT image_url FROM image WHERE task_id = ?");   
+                    $update=$this->connect()->prepare("SELECT $variabe FROM $table WHERE $value = ?");   
                         if(!$update->execute(array($taskid)))
                                 {
                                     $update = null;
                                     echo "not worked";
-                                    header("location: viewimage.php?error=stmtfailed");
+                                    header("location: admintaskview.php?error=stmtfailed");
                                     exit();
                                 }
                                 if($update->rowCount() > 0)
                                 {
+                                 
                                     $data = $update->fetchAll(PDO::FETCH_ASSOC);
                                     
                                     return $data;
@@ -31,7 +32,7 @@ class taskContr extends dbh {
                     header("location: taskdisp.php?error=stmtfailed");
                     exit();
                 } 
-                echo $studentQuery->rowCount();     
+            
                 if($studentQuery->rowCount() > 0){
                     $data = $studentQuery->fetchAll(PDO::FETCH_ASSOC);       
                     return $data;
@@ -64,20 +65,25 @@ class taskContr extends dbh {
                         $task_title = $inputData['task_title'];
                         $enddate = $inputData['enddate'];
                         $priority = $inputData['priority'];
-                        $stmt= $this->connect()->prepare("UPDATE tbtask_title SET task_title=?,enddate=?,priority=? WHERE task_id =?;");
-                        if(!$stmt->execute(array($task_title,$enddate,$priority,$task_id))){
+                        $description = $inputData['description'];
+                        $stmt= $this->connect()->prepare("UPDATE tbtask_title SET task_title=?,enddate=?,priority=?,description=? WHERE task_id =?;");
+                        if(!$stmt->execute(array($task_title,$enddate,$priority,$description,$task_id))){
                             $stmt = null;
                             header('location:taskdisp.php?error=somethingWrong!');
                         }
+                        
                         $gettask=$this->connect()->prepare("SELECT * FROM tbtask_title WHERE task_id=? ");
                         if(!$gettask->execute(array($task_id))){
                             $stmt = null;
                             header('location:taskdisp.php?error=somethingWrong IN GETTING TASK!');
                         }
                         if($gettask->rowCount() > 0){
+                            
                             $data = $gettask->fetchAll(PDO::FETCH_ASSOC);  
+                         
                              $id=$_SESSION['projectidadmin'];
-                            $email = $_SESSION['pmemail'];
+                            $priority1=$this->taskPriorityUser($data[0]['priority']);
+                            $email = $_SESSION['email'];
                             $sendmail = new email;
                             $subject=  'Task update in'.$_SESSION['projectname'];
                             $email_template = "
@@ -86,10 +92,12 @@ class taskContr extends dbh {
                                             <p>
                                             <br>Task Title:".$data[0]['task_title']."
                                             <br>Due Date:".$data[0]['enddate']."
-                                            <br>Priority:".$data[0]['priority']."
+                                            <br>Priority:".$priority1."
                                             </p>
                                             ";  
+                                           
                             $sendmail->sendmail($subject,$email_template,$email);
+                           
                             echo
                             "
                             <script>
@@ -130,7 +138,7 @@ class taskContr extends dbh {
                            if(!$studentQuery->execute(array($project_id)))
                                {
                                    $studentQuery = null;
-                                   header("location: admin.php?error=stmtfailedindex");
+                                   header("location: admin.php?error=stmtfailed");
                                    exit();
                                }
                            if($studentQuery->rowCount() > 0)
@@ -252,6 +260,7 @@ class taskContr extends dbh {
                                 exit();
                             }
                             $data = $gettask->fetchAll(PDO::FETCH_ASSOC);  
+                            
                            return $data;
         }
         public function uploadimage($name,$taskid)
