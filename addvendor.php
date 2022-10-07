@@ -24,13 +24,9 @@ session_start();
              $select ='user_name';
              $uid =2;
              $getusername = new vendorController;
-             $username = $getusername->getuser($uid,$value,$select);
-                  
+             $username = $getusername->getuser($uid,$value,$select);                  
         ?>
-    <a  class="btn btn-primary" href="insertuser.php">Back</a>  
-    
-                   
-                   
+    <a  class="btn btn-primary" href="insertuser.php">Back</a>                   
                     <?php
                 
                     if($username){
@@ -46,11 +42,8 @@ session_start();
                    <?php
                     
                     for ($h=0;$h<$num;$h++){
-                    ?>
-                         
-                            <option value="<?=$username[$h]['user_name']?>"><?=$username[$h]['user_name']?></option>
-                          
-               
+                    ?>                         
+                            <option value="<?=$username[$h]['user_name']?>"><?=$username[$h]['user_name']?></option>               
                       <?php
                     }
                     ?>
@@ -93,11 +86,6 @@ session_start();
                   <?php
             }
                       ?> 
-                       
-                         
-                    
-    
-     
         <script type="text/javascript">
                     function valid()
                     {
