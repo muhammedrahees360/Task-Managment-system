@@ -54,13 +54,6 @@ if(isset($_POST['savetask']))
                                                                     $resultoftask = $uploadimage->uploadimage($new_img_name,$taskid );
                                                                     header("Location: taskdisp.php?id=$projectid") ;
                                                                     exit();  
-                                                                    // echo
-                                                                    // "
-                                                                    // <script>
-                                                                    // alert('new task added');
-                                                                    // document.location.href = 'taskdisp.php?id=$projectid';
-                                                                    // </script>
-                                                                    // ";
                                                                 }else{
                                                                         $em = "youcantuploadthefileofthistype";
                                                                         header("Location: newtaskview.php?error=$em") ;
@@ -77,8 +70,7 @@ if(isset($_POST['savetask']))
                     $comment = $_POST['taskcomment'];
                     
                     $user = new taskContr;
-                    $result = $user->setcomment($comment);
-                    
+                    $result = $user->setcomment($comment);                  
                 }
                 if(isset($_POST['deletetask']))
 {
