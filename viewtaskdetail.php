@@ -53,7 +53,6 @@
             border-bottom: 1px solid #e5e9f2;
         }
         </style>
-
 </head>
 <body style="padding: 3vw;">
     <a  class="btn btn-primary" href="user.php">Back</a> 
@@ -76,30 +75,21 @@
                     <?php
   $index = 0;
   if(isset($_GET['id']))
-  {       
-         
+  {                
       $id=$_GET['id'];
-      $gettask = new userfunction;
-      
+      $gettask = new userfunction;    
       $taskresult =$gettask->gettask($id);
       $_SESSION['taskid']=$_GET['id'];             
 ?>
-
-                    <div class="media">
-                        
-                        <div class="media-body">
-          
+                    <div class="media">                      
+                        <div class="media-body">          
                            Title :   <?=$taskresult[0]['task_title'] ?>
-                            <br>
-    
-                         
+                            <br>       
                         </div>
                     </div>
                     <br>
-                    <div class="media">
-                        
-                        <div class="media-body">
-                            
+                    <div class="media">                        
+                        <div class="media-body">                            
                             Description
                             <br>
                             <div class="media-body">
@@ -153,11 +143,8 @@
                             <div class="row no-gutters mt-1">
                                 <div class="col-6 col-md-4 col-lg-4 col-xl-3" >
                                     <img src="Uploads/<?= $resultimage[$i]['image_url']?>" class="img-fluid pr-2" alt="Unsplash">
-                                </div>
-                                
-                            </div>
-    
-                          
+                                </div>                               
+                            </div>                          
                         </div>
                     </div>
                     <?php
@@ -170,8 +157,7 @@
             header("location:user.php?error=gotnotaskid");
          
             }
-    ?>
-                    
+    ?>                    
                 </div>
             </div>
         </div>
@@ -199,33 +185,28 @@
                                         $variabe1='full_name'; 
                                         $table1='tbuser';
                                         $value1='user_id';  
-                                        $task_id1=$resultofcomment[$j]['user_id'];
-                                                                                           
+                                        $task_id1=$resultofcomment[$j]['user_id'];                                                                                          
                                         $user_role = $getcomment->getimage($task_id1,$variabe1,$table1,$value1); 
                                         ?>  
                                             <p class="small mb-0 ms-2"><?=$user_role[0]['full_name']?></p>
                                             </div>  
                                              <div class="d-flex flex-row align-items-center">
-                                            <p class="small text-muted mb-0"><?=$resultofcomment[$j]['created_at']?></p>
-              
+                                            <p class="small text-muted mb-0"><?=$resultofcomment[$j]['created_at']?></p>            
                                             </div>                  
                                             </div>
                                     </div>
                                 </div>
-                            <?php
-                              
+                            <?php                             
                                 }   
                             } else{
                                 echo " ";
                             }                                                                                             
-                            ?>   
-                                                                     
+                            ?>                                                                       
                     <div class="form-outline mb-4">
                     <form action="usermodel.php" method="POST">
                             <input type="text" id="addANote" name="taskcomment" class="form-control" placeholder="Type comment..." /><br>
                             <center><button type="submit" name="comment" class="btn btn-danger">Comment</button></center>
-                        </form> 
-                        
+                        </form>                       
                     </div>
                 </div>
             </div>
