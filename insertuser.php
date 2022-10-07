@@ -12,7 +12,9 @@ session_start();
           echo "<p>Something went wrong,try again</p>";
         }
         elseif($_GET["error"] == 'none'){
+
           echo "<p style='color:green;margin-left:20px;'>Login Successful</p>";
+
         }elseif($_GET["error"] == 'dataisnotdeleted'){
             echo "<p style='color:red;'>Data is not Deleted</p>";
           }elseif($_GET["error"] == 'userinvalid'){
