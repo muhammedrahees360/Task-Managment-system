@@ -1,6 +1,7 @@
 <?php
 
 class userContr extends dbh {
+
     public function index()
             {
                 $id=1;
@@ -36,14 +37,22 @@ class userContr extends dbh {
         }
      public function delete($user_id)
         {           
-            $projectDeleteQuery = $this->connect()->prepare("DELETE FROM tbuser WHERE user_id= ? LIMIT 1");
-            if(!$projectDeleteQuery->execute(array($user_id))){
-                $projectDeleteQuery = null;
+         
+            $Deleteuser = $this->connect()->prepare("DELETE FROM tbuser WHERE user_id= ? LIMIT 1");
+            
+            if(!$Deleteuser->execute(array($user_id))){
+                $Deleteuser = null;
                 header("location: displayuser.php?error=stmtfailed");
                 exit();
             }
-           
-            if($projectDeleteQuery){
+            $deleteproject = $this->connect()->prepare("DELETE FROM tbproject_list WHERE users_id = ?");
+            if(!$deleteproject->execute(array($user_id))){
+                $deleteproject = null;
+                header("location: displayuser.php?error=stmtfailed");
+                exit();
+            }
+          
+            if($Deleteuser){
                 return true;
             }else{
                 return false;
@@ -73,8 +82,9 @@ public function update($inputData,$user_id)
 {
     $email = $inputData['email'];
     $username = $inputData['username'];
-    $stmt= $this->connect()->prepare("UPDATE tbuser SET user_name=?,email=? WHERE user_id =?;");
-    if(!$stmt->execute(array($username,$email,$user_id))){
+    $full_name = $inputData['full_name'];
+    $stmt= $this->connect()->prepare("UPDATE tbuser SET user_name=?,email=?,full_name=? WHERE user_id =?;");
+    if(!$stmt->execute(array($username,$email,$full_name,$user_id))){
         $stmt = null;
         header('location:displayuser.php?error=somethingWrong!');
     }
@@ -103,32 +113,37 @@ public function getuser($uid)
             }
 public function create($inputData){
     $username=$inputData['username'];
+    $fullname = $inputData['fullname'];
     $email=$inputData['email'];
-    $password=$inputData['password'];
+    $password=password_hash($inputData['password'],PASSWORD_DEFAULT);
     $userrole=$inputData['userrole'];
     $trailid= 1;
-    $getuser =$this->connect()->prepare("INSERT INTO `tbuser`( `user_name`, `email`, `pwd`, `user_role`,`created_by`, `updated_by`) VALUES(?,?,?,?,?,?)");
+    $getuser =$this->connect()->prepare("INSERT INTO `tbuser`( `user_name`, full_name,`email`, `pwd`, `user_role`,`created_by`, `updated_by`) VALUES(?,?,?,?,?,?,?)");
              
-    if(!$getuser->execute(array($username,$email,$password,$userrole,$trailid,$trailid)))
+    if(!$getuser->execute(array($username, $fullname,$email,$password,$userrole,$trailid,$trailid)))
         {
             $getuser = null;
             header("location: disaplayuser.php?error=stmtfailed");
             exit();
         }
-       
-      if($getuser->rowCount() > 0)
+        $setuser =$this->connect()->prepare( "SELECT user_id FROM tbuser WHERE full_name=?;");
+        $setuser->execute(array($fullname));   
+        $dataset = $setuser->fetchAll(PDO::FETCH_ASSOC);
+        $realid=$dataset[0]['user_id'];
+        $alteruser =$this->connect()->prepare("UPDATE tbuser SET created_by=?,updated_by=? WHERE user_id =?");       
+                    if(!$alteruser->execute(array($realid,$realid,$realid)))
+                        {
+                            $setuser = null;
+                            header("location: dispalyuser.php?error=stmtfailed");
+                            exit();
+                        }
+        $pageupdate=$this->connect()->prepare("SELECT * FROM tbuser WHERE user_role = ?");
+        $pageupdate->execute(array(2));
+     
+      if(($pageupdate->rowCount() == 1) && ($_SESSION['page']=1) )
           {
-            $getuser =$this->connect()->prepare( "SELECT user_id FROM tbuser WHERE user_id=?;");
-            $dataset = $getuser->fetchAll(PDO::FETCH_ASSOC);
-            $realid=$dataset[0]['user_id'];
-            $alteruser =$this->connect()->prepare("UPDATE tbuser SET created_by=?,updated_by=? WHERE user_id =?");       
-                        if(!$alteruser->execute(array($realid,$realid,$realid)))
-                            {
-                                $getuser = null;
-                                header("location: dispalyuser.php?error=stmtfailed");
-                                exit();
-                            }
-            return $dataset;
+           $_SESSION['page'] =0;
+            return true;
         }else{
                 return false;
             }

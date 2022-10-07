@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('dbh.classes.php');
-include('userfunction.php');
+include('controller/userfunction.php');
 if(isset($_POST['deletetask']))
 {
     $task_id = $_POST['deletetask'];
@@ -20,11 +20,9 @@ if(isset($_POST['deletetask']))
 }
 if(isset($_POST['taskcomment']))
 {
-    $comment = $_POST['taskcomment'];
- 
+    $comment = $_POST['taskcomment']; 
     $user = new userfunction;
-    $result = $user->setcomment($comment);
-    
+    $result = $user->setcomment($comment);   
 }
 if(isset($_POST['editTask']))
  { 
@@ -35,38 +33,23 @@ if(isset($_POST['editTask']))
         'priority'=> $_POST['priority']
     ];
    
-    $user = new userfunction;
-  
+    $user = new userfunction; 
     $result = $user->update($inputData,$task_id);
  }
  if(isset($_POST['edittask']))
-{
-   
+{   
     $task_id = $_POST['task_id'];
     $status = $_POST['status'];
-
     $task_title=$_POST['task_title'];
-    
-   
- 
     $user = new userfunction;
     $t_status=$user->taskStatusUser($status);
     $email_template = "
                                             <h2>Task is updated:</h2>
                                             <br>
                                             <p>
-                                            <br>Task Title:".$task_title."
-                                           
-                                            <br>The Status of task is changed to :". $t_status."
-                                            
+                                            <br>Task Title:".$task_title."                                          
+                                            <br>The Status of task is changed to :". $t_status."                                        
                                             </p>
-
                                             ";
-   
-    $result = $user->updatetask($task_id,$status,$email_template);
-    
-
-   
-
-    
+    $result = $user->updatetask($task_id,$status,$email_template);  
 }

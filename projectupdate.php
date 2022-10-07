@@ -1,6 +1,6 @@
 <?php
 include('dbh.classes.php');
-include('vendorController.php');
+include('controller/vendorController.php');
 if(isset($_POST['deleteUser']))
     {
         $project_id = $_POST['deleteUser'];
@@ -8,22 +8,19 @@ if(isset($_POST['deleteUser']))
         $result = $user->delete($project_id);
         if($result)
         {
-            header("location: insertuser.php?error=noerrordatadeleted");
+            header("location: insertuser.php?success=datadeleted");
             exit();
         }else{
-                header("location: insertuser.php?errorindeletecolumn");
+                header("location: insertuser.php?error=dataisnotdeleted");
                 exit();
              }
     }
 if(isset($_POST['update']))
         {
-            $id = $_POST['project_id'];
+            $id = $_POST['project_id'];          
             $inputData = [
-                
                 'vendorname' => $_POST['vendorname'],
                 'projectname' => $_POST['projectname'],
-                'projectmanager' => $_POST['projectmanager'],
-                'email' => $_POST['email'],
                 'duedate' => $_POST['duedate'],
                 'description' =>$_POST['description']
             ];
@@ -36,14 +33,12 @@ if(isset($_POST['update']))
                 }
         }
 if(isset($_POST["addvendor"]))
-    {
+    {       
         $username=$_POST['uname'];
         $vendorname=$_POST['vname'];
-        $projectmanager=$_POST['pmanager'];
-        $projectname=$_POST['pname'];
-        $pm_email=$_POST['pemail'];
+        $projectname=$_POST['pname'];     
         $duedate=$_POST['duedate'];
         $description=$_POST['description'];
-        $setuser = new vendorController;       
-        $result = $setuser->setuser($username,$vendorname,$projectmanager,$projectname,$pm_email,$duedate,$description);
+        $setuser = new vendorController;            
+        $result = $setuser->setuser($username,$vendorname,$projectname,$duedate,$description);
     }   

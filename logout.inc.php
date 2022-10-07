@@ -1,6 +1,6 @@
 <?php
- session_start();
+session_start();
  session_unset();
- session_destroy();
- header("location: index.php?error=none");
+//  session_destroy();
+ header("location: index.php?success=logout");
 ?>
