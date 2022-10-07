@@ -27,15 +27,23 @@ if(isset( $_SESSION['useruid'])){
     $idgiveback=$_SESSION['projectidadmin'];
     $index = 0;
 ?>  
-<a  class="btn btn-primary" href="taskdisp.php?id=<?=$idgiveback?>">Back</a>  
+<a  class="btn btn-dark" href="taskdisp.php?id=<?=$idgiveback?>">Back</a>  
     <div style="margin: 10px;padding: 10px;">
         <dl class="row">
-            <dd class="col-sm-3">Task Name :<?=$result[0]['task_title']?></dd>
-            <dd class="col-sm-9">Task Due Date : <?= $result[0]['enddate']?></dd>                    
+            <dd class="col-sm-3">Task Name :</dd>
+            <dd class="col-sm-9"><?=$result[0]['task_title']?></dd>               
         </dl>
         <dl class="row">
-            <dd class="col-sm-3">Status :<?=$status?></dd>
-            <dd class="col-sm-9">Priority : <?=$priority?></dd>                    
+        <dd class="col-sm-3">Task Due Date : </dd>
+        <dd class="col-sm-9"><?= $result[0]['enddate']?></dd>       
+        </dl>
+        <dl class="row">
+            <dd class="col-sm-3">Status :</dd>
+            <dd class="col-sm-9"><?=$status?></dd>                    
+        </dl>
+        <dl class="row">
+        <dd class="col-sm-3">Priority :</dd>  
+        <dd class="col-sm-9"> <?=$priority?></dd>      
         </dl>
     </div>
     <div style="margin: 10px;padding: 10px;">
@@ -135,6 +143,7 @@ if(isset( $_SESSION['useruid'])){
                             ?>                                               
                     <div class="form-outline mb-4">
                     <form action="taskmodel.php" method="POST">
+                        <input type="hidden" value="<?=$result[0]['task_title']?>" name="taskttitle">
                             <input type="text" id="addANote" name="taskcomment" class="form-control" placeholder="Type comment..." /><br>
                             <center><button type="submit" name="comment" class="btn btn-danger">Comment</button></center>
                         </form> 

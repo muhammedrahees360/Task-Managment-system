@@ -106,7 +106,7 @@ session_start();
         <form action="projectupdate.php" method="POST">
          
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary" name="deleteUser"  value="<?= $row["project_id"] ?>" >Delete</button>
+        <button type="submit" class="btn btn-danger" name="deleteUser"  value="<?= $row["project_id"] ?>" >Delete</button>
                 </form>
       </div>
     </div>

@@ -56,7 +56,7 @@
 
 </head>
 <body style="padding: 3vw;">
-    <a  class="btn btn-primary" href="user.php">Back</a> 
+    <a  class="btn btn-dark" href="user.php">Back</a> 
   
         <div class="container">
     <h1 class="h3 mb-3">Activities</h1>
@@ -222,6 +222,7 @@
                                                                      
                     <div class="form-outline mb-4">
                     <form action="usermodel.php" method="POST">
+                    <input type="hidden" value="<?=$taskresult[0]['task_title'] ?>" name="taskttitle">
                             <input type="text" id="addANote" name="taskcomment" class="form-control" placeholder="Type comment..." /><br>
                             <center><button type="submit" name="comment" class="btn btn-danger">Comment</button></center>
                         </form> 

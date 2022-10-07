@@ -14,9 +14,8 @@ if(isset($_POST['Submit']))
  
  if(!$stmt->execute(array($oldpass,$useremail))){
     $stmt = null;
-    echo "hellozzzzzzzzzzzzzzzzz";
     exit();
-}
+    }
     echo "hello";
     exit();
 }

@@ -199,7 +199,7 @@ class taskContr extends dbh {
                                                 return "Low";
                                             }
                     }
-                    public function setcomment($comment)
+                    public function setcomment($comment,$tasktitle)
                     {  
                         $taskid=$_SESSION['taskid'];                       
                         $userid=$_SESSION['userid'];                        
@@ -210,6 +210,18 @@ class taskContr extends dbh {
                                 header("location: user.php?");                                
                                 exit();
                             }
+                            $email=$_SESSION['email'];
+                            $subject='New comment is Added in '.$tasktitle;
+                            $email_template="
+                            <h2>A Comment is Added:</h2>
+                            <p>
+                            TASK:$tasktitle
+                            <br>Comment:$comment
+                           
+                            </p>
+
+                            ";    
+                        $this->mailnewtask($email,$subject,$email_template);
                         if($taskcomment->rowCount()==1){
                             header("location: admintaskview.php?id=$taskid");             
                         }else{

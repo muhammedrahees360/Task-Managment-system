@@ -17,7 +17,7 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         </head>
         <body style="padding:3vw ;">
-        <a class="btn btn-primary" href="displayuser.php">Back</a>  
+        <a class="btn btn-dark" href="displayuser.php">Back</a>  
             <h2><center>Add User</center></h2><hr>
             <form class="row g-3" method="POST" action="adduser.model.php">
                 <div class="col-md-6">

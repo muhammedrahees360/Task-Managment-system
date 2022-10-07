@@ -26,7 +26,7 @@
     
 </head>
 <body style="padding: 4vw;" >
-    <a  class="btn btn-primary" href="insertuser.php">Back</a>  
+    <a  class="btn btn-dark" href="insertuser.php">Back</a>  
     <h2><center>Users List</center><hr></h2>
     <form style="float:right;padding:5px" action="addUserview.php" method="POST">
         <button type="submit"  class="btn btn-primary" value="<?= $row["user_id"] ?>">+Add User</button>
@@ -79,7 +79,6 @@
                                 <!-- adduser.model.php -->
                         <form action="adduser.model.php" method="POST">
                         <button type="button"  name='deleteUser' class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"  value="<?= $row['user_id']?>" >Delete</button>
-                           <!-- <button type='submit' name='deleteUser' class='btn btn-danger delete_btn' data-toggle="modal" data-target="#exampleModal" value="<?= $row['user_id']?>">Delete</button>      -->
                             </form>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

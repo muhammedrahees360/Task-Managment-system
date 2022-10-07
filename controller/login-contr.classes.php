@@ -183,8 +183,9 @@ class loginContr extends dbh
     }
     public function setpass($password,$email){
         $null="NULL";
+        $resetpassword=password_hash($password,PASSWORD_DEFAULT);
         $stmt= $this->connect()->prepare("UPDATE tbuser SET pwd=? ,resettoken=?,resettokenexpire=NULL WHERE email=? ;");
-                if($stmt->execute(array($password,$null,$email)))
+                if($stmt->execute(array($resetpassword,$null,$email)))
                 {
                     header("location: index.php?success=passwordupdated");
                     exit();

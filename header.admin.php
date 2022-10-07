@@ -15,9 +15,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav header-menu" >
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a  style="color:white!important" class="nav-link" href="insertuser.php">Dashboard</a>
-        </li>
+        </li> -->
         <li class="nav-item">
           <a style="color:white!important"  class="nav-link" href="displayuser.php">Users</a>
         </li>

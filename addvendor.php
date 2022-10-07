@@ -27,7 +27,7 @@ session_start();
              $username = $getusername->getuser($uid,$value,$select);
                   
         ?>
-    <a  class="btn btn-primary" href="insertuser.php">Back</a>  
+    <a  class="btn btn-dark" href="insertuser.php">Back</a>  
     
                    
                    
