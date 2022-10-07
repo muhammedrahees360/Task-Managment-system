@@ -2,8 +2,7 @@
         session_start();
         if(isset( $_SESSION['useruid'])){
         include('dbh.classes.php');
-        include "controller/taskController.php";
-       
+        include "controller/taskController.php";   
         include 'header.admin.php';
         // include 'userfunction.php';
         echo"<br>";
@@ -40,10 +39,8 @@
                         if($result)
                             {
                                 foreach($result as $row)
-                                    {
-                                     
-                                        $_SESSION['projectname']=$row["project_name"];
-                                                                   
+                                    {                                     
+                                        $_SESSION['projectname']=$row["project_name"];                                                                   
                 ?>
                 <div style="border: 1px solid black;margin: 30px;padding: 30px;">
                         <dl class="row">
@@ -148,8 +145,7 @@
 
                                             <?php
                                         }
-                                        }else{
-                                        
+                                        }else{                                        
                                             echo "No Task Added";
                                         }
                                 ?>  

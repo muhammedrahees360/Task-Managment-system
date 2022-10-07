@@ -6,8 +6,7 @@ session_start();
     echo "<br>";
     include "dbh.classes.php";
     include "controller/vendorController.php";
-    if(isset($_GET["error"])){
-  
+    if(isset($_GET["error"])){ 
         if($_GET["error"] == 'stmtfailed'){
           echo "<p>Something went wrong,try again</p>";
         }
@@ -74,9 +73,7 @@ session_start();
                         $value='user_id';
                         $uid=$row['users_id'];
                         $user_email=$student->getuser($uid,$value,$select); 
-                        $user_fullname=$student->getuser($uid,$value,$select_fullname);
-                        
-                       
+                        $user_fullname=$student->getuser($uid,$value,$select_fullname);                      
         ?>
             <tr>
                 <td><?= $row["project_id"] ?></td>
@@ -98,8 +95,7 @@ session_start();
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-    
+      <div class="modal-body">   
       </div>
       <div class="modal-footer">
         <form action="projectupdate.php" method="POST">
@@ -121,8 +117,7 @@ session_start();
                 </tr>
         <?php
                   }
-            }
-                      
+            }                     
         ?>
         <?php
                 $uid=$row["users_id"];
@@ -132,8 +127,7 @@ session_start();
                 $select ='user_name';
                 $getuser = $studentgetuser->getuser($uid,$value,$select);
                 if($getuser){          
-                }
-            
+                }            
         ?>
          
     </tbody>

@@ -15,9 +15,7 @@
         elseif($_GET["error"] == 'none'){
           echo "<p style='color:green;'>Login Successful</p>";
         }
-      }
-   
-    
+      }   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,17 +99,14 @@
                  
             }else{
                 header("location: user.php?error=stmtfailed");
-                  }
-               
+                  }            
         ?>
          <h4>Task List<hr></h4>
    <?php
-         if(isset($_GET["success"])){
-  
+         if(isset($_GET["success"])){ 
             if($_GET["success"] == 'statusupdated'){
               echo "<center><p style='color:green;'>Status Updated</p></center>";
-            }
-            
+            }            
           }   
    ?>
 <table class="table table-striped table-hover">
@@ -128,16 +123,12 @@
         </tr>
     </thead>
     <tbody>
-        <?php      
-             
-            $user = new userfunction ;
-          
+        <?php                
+            $user = new userfunction ;         
             $taskid=$_SESSION['projectid'];
-            $result = $user-> viewtask($taskid);
-            
+            $result = $user-> viewtask($taskid);           
             if($result)
-            {
-               
+            {             
                 foreach($result as $row)
                   {
                     ?>

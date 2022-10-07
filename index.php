@@ -1,18 +1,12 @@
 <?php
 session_start();
 include 'login.inc.php';
-
-if(isset($_GET["success"])){
-  
+if(isset($_GET["success"])){ 
   if($_GET["success"] == 'logout'){
     echo "<p ><center style='color:green;'>Logout Successfull</p></center>";
   }elseif($_GET["success"] == 'linksendtoemail'){
     echo "<p ><center style='color:green;'>Link Send To Your Mail</p></center>";
   }
-  
-  
- 
-
 }
 ?>
 <!DOCTYPE html>
@@ -53,9 +47,7 @@ if(isset($_GET["success"])){
   }elseif($_GET["error"] == 'passwordupdated'){
     echo "<p><center>Password Updated</p></center>";
   }
-
 }
-
 ?>
                         <div class="form-outline form-white mb-4">
                             <label class="form-label" for="typeEmailX">Username</label>
@@ -80,8 +72,6 @@ if(isset($_GET["success"])){
   </div>
 </section>
 <?php
-
-
 ?>
 </body>
 </html>
