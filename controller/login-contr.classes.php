@@ -1,11 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    
+
 <?php
 require 'email.php';
 class loginContr extends dbh
 {
     public function loginUser($uid,$pwd)
         {  
-            $stmt= $this->connect()->prepare('SELECT pwd FROM tbuser WHERE user_name= ? OR email = ?;');
-            if(!$stmt->execute(array($uid,$pwd)))
+            $stmt= $this->connect()->prepare('SELECT pwd FROM tbuser WHERE user_name= ? ;');
+            if(!$stmt->execute(array($uid)))
             {
                 $stmt = null;
                 header("location: index.php?error=stmtfailed");
@@ -14,15 +26,22 @@ class loginContr extends dbh
             if($stmt->rowCount() == 0)
             {
                 $stmt = null;
-                header("location: index.php?error=usernotfound");
+                header("location: index.php?error=invalidusername");
                 exit();
+                
+                
+           
             }
             $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if($data[0]["pwd"] !== $pwd){
+            
+            if(!password_verify($pwd,$data[0]['pwd'])){
                 $stmt = null;
                 header("location: index.php?error=wrongpassword");
                 exit();
-            }elseif($data[0]["pwd"] == $pwd)
+              
+                
+               
+            }elseif(password_verify($pwd,$data[0]['pwd']))
                 {
                     $stmt= $this->connect()->prepare('SELECT * FROM tbuser WHERE user_name= ? OR email = ? AND pwd = ?;');
                     if(!$stmt->execute(array($uid,$uid,$pwd)))
@@ -60,7 +79,8 @@ class loginContr extends dbh
                     session_start();
                     $_SESSION['userid']=$user[0]["user_id"];
                     $_SESSION['useruid']=$user[0]["user_name"];
-                   
+                   $_SESSION['user_role']=$user[0]["user_role"] ;
+                  
                     if($user[0]["user_role"] == 1)
                         {
                             header("location: insertuser.php?error=none");
@@ -87,14 +107,8 @@ class loginContr extends dbh
                 }               
                 if( $checkemail->rowCount() == 0){
                     $checkemail = null;
-                    echo
-                    "
-                    <script>
-                    alert('invalid email');
-                    document.location.href = 'index.php';
-                    </script>
-                    ";
-                    // header("location: index.php?error=invaliemailentered");
+                   
+                    header("location: index.php?error=invaliemailentered");
                     exit();
                 }                
                 $data =  $checkemail->fetchAll(PDO::FETCH_ASSOC);  
@@ -116,15 +130,10 @@ class loginContr extends dbh
                     ";
                     $sendmail->sendmail($subject,$email_template,$email);                    
                 }
-             echo"token updated";
-                print_r($data);
-                echo
-                "
-                <script>
-                alert('token not entered');
-                document.location.href = 'index.php';
-                </script>
-                ";
+                header("location: index.php?success=linksendtoemail");
+                exit();
+              
+               
     }
     public function resetpass($token,$date,$email)
     {
@@ -134,32 +143,42 @@ class loginContr extends dbh
                         if($stmt->rowCount() == 1)
                         {
                             echo "
-                            <form  action='updatepass.php' method='POST'>
-                                <h3>Create new password</h3>
-                                <input type='password' placeholder='New password' name='password'>
-                                <button type='submit' name='updatepassword'>UPDATE</button>
-                                <input type='hidden' name='email' value=$email>
-                            </form>
+                            
+                            <section class='vh-100 gradient-custom'>
+                            <div class='container py-5 h-100'>
+                                <div class='row d-flex justify-content-center align-items-center h-100'>
+                                <div class='col-12 col-md-8 col-lg-6 col-xl-5'>
+                                    <div class='card bg-dark text-white' style='border-radius: 1rem;'>
+                                    <div class='card-body p-5 text-center'>
+                                        <div class='mb-md-5 mt-md-4 pb-5'>
+                                            <form action='updatepass.php' method='POST'>
+                                                <h2 class='fw-bold mb-2 text-uppercase'>Create new password</h2>
+                                                    <div class='form-outline form-white mb-4'>
+                                                        <input type='password' id='typeEmailX' placeholder='New password' name='password' class='form-control form-control-lg'/>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                <button class='btn btn-outline-light btn-lg px-5' name='updatepassword'  type='submit'>Update</button>
+                                                <input type='hidden' name='email' value=$email>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                    </section>
                             ";
                             exit();
                                 
                         }else{
-                            echo
-                            "
-                            <script>
-                            alert('Expired link');
-                            document.location.href = 'index.php';
-                            </script>
-                            ";
+                            
+                            header("location: index.php?error=linkexpired");
+                            exit();
                         }      
                 }else{
-                            echo
-                            "
-                            <script>
-                            alert('execution not working');
-                            document.location.href = 'index.php';
-                            </script>
-                            ";
+                    header("location: index.php?error=stmtfailed");
+                    exit();
                             }                           
     }
     public function setpass($password,$email){
@@ -167,25 +186,18 @@ class loginContr extends dbh
         $stmt= $this->connect()->prepare("UPDATE tbuser SET pwd=? ,resettoken=?,resettokenexpire=NULL WHERE email=? ;");
                 if($stmt->execute(array($password,$null,$email)))
                 {
-                    echo
-                    "
-                    <script>
-                    alert('password updated');
-                    document.location.href = 'index.php';
-                    </script>
-                    ";         
+                    header("location: index.php?success=passwordupdated");
+                    exit();
+                         
                 }else{
-                            echo
-                            "
-                            <script>
-                            alert('execution not working');
-                            document.location.href = 'index.php';
-                            </script>
-                            ";
-                            }
+                    header("location: index.php?error=stmtfailed");
+                    exit();
+                     }
     }
 }
-
+?>
+</body>
+</html>
 
 
 

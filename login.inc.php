@@ -1,8 +1,10 @@
-<?php
+<?php 
 include "dbh.classes.php";
-include "login-contr.classes.php";
+include "controller/login-contr.classes.php";
+
 if(isset($_POST["submit"]))
     {
+        
         $uid = $_POST['uid'];
         $pwd = $_POST['pwd']; 
         $login = new loginContr();

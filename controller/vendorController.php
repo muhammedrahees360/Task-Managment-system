@@ -1,6 +1,6 @@
 <?php
  session_start();
-include 'email.php';
+include './email.php';
 class vendorController extends Dbh {
 
    
@@ -14,7 +14,7 @@ class vendorController extends Dbh {
                     if(!$studentQuery->execute(array($id)))
                         {
                             $studentQuery = null;
-                            header("location: admin.php?error=stmtfailedindex");
+                            header("location: admin.php?error=stmtfailed");
                             exit();
                         }
                 
@@ -26,23 +26,23 @@ class vendorController extends Dbh {
                                 return false;
                             }
                 }
-        public function getuser($uid)
+        public function getuser($uid,$value,$select)
             {
             
                
-                $getuser =$this->connect()->prepare( "SELECT user_name FROM tbuser WHERE user_id=?;");
+                $getuser =$this->connect()->prepare( "SELECT $select FROM tbuser WHERE $value=?;");
              
                 if(!$getuser->execute(array($uid)))
                     {
                         $getuser = null;
-                        header("location: admin.php?error=stmtfailedgetuser");
+                        header("location: admin.php?error=stmtfailed");
                         exit();
                     }
                    
                 if($getuser->rowCount() > 0)
                     {
                         $data = $getuser->fetchAll(PDO::FETCH_ASSOC);
-                        
+                       
                         return $data;
                     }else{
                             return false;
@@ -84,10 +84,13 @@ class vendorController extends Dbh {
 
                 {
                     $projectDeleteQuery = null;
-                    header("location: admin.php?error=stmtfaileddetelte");
+                    header("location: insertuser.php?error=stmtfaileddetelte");
                     exit();
                 }
-              
+            $taskdelete =$this->connect()->prepare("DELETE FROM tbtask_title WHERE project_id= ?");
+            $taskdelete->execute(array($project_id));
+            // $commentdelete =$this->connect()->prepare("DELETE FROM tbtask_comment WHERE project_id= ?");
+            // $commentdelete->execute(array($project_id));
                 if($projectDeleteQuery)
                 {
                     return true;
@@ -101,14 +104,14 @@ class vendorController extends Dbh {
         $stmt= $this->connect()->prepare("SELECT * FROM tbproject_list WHERE  project_id = ?;");
         if(!$stmt->execute(array($id))){
             $stmt = null;
-            header("location: admin.php?error=stmtfailedinsertuser");
+            header("location: admin.php?error=stmtfailed");
             exit();
         }
      
         if($stmt->rowCount() == 0){
             $stmt = null;
             
-            header("location: admin.php?error=invaliemailentered");
+            header("location: admin.php?error=stmtfailed");
             exit();
         }
     
@@ -127,14 +130,14 @@ class vendorController extends Dbh {
                 
                 $vendorname = $inputData['vendorname'];
                 $projectname = $inputData['projectname'];
-                $projectmanager = $inputData['projectmanager'];
-                $email = $inputData['email'];
+               
+                // $email = $inputData['email'];
                 $duedate = $inputData['duedate'];
                 $description = $inputData['description'];
                 
-                $stmt= $this->connect()->prepare("UPDATE tbproject_list SET vendor_name=?,project_manager= ? ,pm_email= ? ,project_name= ? ,description= ? ,end_date= ? WHERE project_id= ? LIMIT 1");
+                $stmt= $this->connect()->prepare("UPDATE tbproject_list SET vendor_name=?,project_name= ? ,description= ? ,end_date= ? WHERE project_id= ? LIMIT 1");
               
-                if(!$stmt->execute(array($vendorname,$projectmanager,$email,$projectname,$description,$duedate,$id))){
+                if(!$stmt->execute(array($vendorname,$projectname,$description,$duedate,$id))){
                     $stmt = null;
                     header("location: admin.php?error=stmtfailedupdate");
                     exit();
@@ -150,7 +153,7 @@ class vendorController extends Dbh {
 
 
             }
-    public function setuser($username,$vendorname,$projectmanager,$projectname,$pm_email,$duedate,$description)
+    public function setuser($username,$vendorname,$projectname,$duedate,$description)
     {
          
          
@@ -161,37 +164,34 @@ class vendorController extends Dbh {
                 if(!$stmt->execute(array($username)))
                     {
                         $stmt = null;
-                        header("location: insertuser.php?error=stmtfailedsetuser");
+                        header("location: insertuser.php?error=stmtfailed");
                         exit();
                     }
         
                 if($stmt->rowCount() == 0)
                     {
                         $stmt = null;
-                        echo
-                        "
-                        <script>
-                        alert('NO user create one');
-                        document.location.href = 'addvendor.php';
-                        </script>
-                        ";
+                        header("location: insertuser.php?error=userinvalid");
+                        exit();
+                       
                     
                     }
                   
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-              
+                
+               $useremail=$data[0]['email'];
                 $userid=$data[0]["user_id"];
-               
-                $update=$this->connect()->prepare('INSERT INTO tbproject_list( vendor_name,project_manager,pm_email, project_name,description, end_date, users_id, created_by, updated_by) VALUES (?,?,?,?,?,?,?,?,?);');
+           
+                $update=$this->connect()->prepare('INSERT INTO tbproject_list( vendor_name, project_name,description, end_date, users_id, created_by, updated_by) VALUES (?,?,?,?,?,?,?);');
               
-                if(!$update->execute(array($vendorname,$projectmanager,$pm_email,$projectname,$description,$duedate,$userid,$userid,$userid)))
+                if(!$update->execute(array($vendorname,$projectname,$description,$duedate,$userid,$userid,$userid)))
                         {
                             $stmt = null;
                             header("location: insertuser.php?error=stmtfailed");
                             exit();
                         }
                        
-                        $email =$pm_email;
+                        $email =$useremail;
                        
                         $sendmail = new email;
                        
@@ -201,25 +201,19 @@ class vendorController extends Dbh {
                                             <br>
                                             <p>
                                             <br>Vendor Name:$vendorname
-                                            <br>Project Manager:$projectmanager
+                                         
                                             <br>Project Name:$projectname
                                             <br>Description:$description
                                             <br>Due Date:$duedate
                                             </p>
 
-                                            ";
-                                            
+                                            ";          
                         $sendmail->sendmail($subject,$email_template,$email);
+                        header("location: insertuser.php?success=vendoradded");
+                        exit();
                        
-                        echo
-                            "
-                            <script>
-                            alert('add successfully');
-                            document.location.href = 'insertuser.php';
-                            </script>
-                            ";
-                        // header("location: insertuser.php?error=userisadded");
-                        // exit();
+                        header("location: insertuser.php?error=userisadded");
+                        exit();
                 
             }
 

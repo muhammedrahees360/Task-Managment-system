@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('dbh.classes.php');
-include('userfunction.php');
+include('controller/userfunction.php');
 if(isset($_POST['deletetask']))
 {
     $task_id = $_POST['deletetask'];
@@ -9,12 +9,12 @@ if(isset($_POST['deletetask']))
     $result = $user->delete($task_id);
     if($result)
     {
-        header("Location:taskdisp.php?error=datadeleted");
+        header("Location:user.php?error=datadeleted");
         exit(0);
     }
     else
     {
-        header("Location:taskdisp.php?error=somethingwrong!");
+        header("Location:user.php?error=somethingwrong!");
         exit(0);
     }
 }

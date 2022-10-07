@@ -6,6 +6,7 @@
 CREATE TABLE tbuser(
     user_id int (10)AUTO_INCREMENT NOT null primary key,
     user_name varchar (200) NOT null,
+    full_name varchar (200) NOT null,
     email varchar (200) NOT null,
     pwd varchar (200) not null,
     user_role tinyint(2),
@@ -18,15 +19,13 @@ CREATE TABLE tbuser(
     
 /* insert value into user table */
 
-INSERT INTO `tbuser`( `user_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','rahees@terrificminds.com','123','1','1','1') ;
+INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','123','1','1','1') ;
     
 /*project list code*/
     
      CREATE TABLE tbproject_list(
     project_id int PRIMARY key AUTO_INCREMENT not null,
     vendor_name text not null,
-     project_manager text not null,
-     pm_email varchar(200) not null,
     project_name text not null,
     description text not null,
     end_date date not null,
