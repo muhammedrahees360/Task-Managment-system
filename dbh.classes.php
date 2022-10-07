@@ -5,8 +5,8 @@ class Dbh{
 
             $dbUsername="afna";
             $dbPassword ="Afna@1999";
-             $dbName = "tms_db1";         
-            $dbh = new PDO('mysql:host=localhost;dbname=tms_db1', $dbUsername,$dbPassword);           
+             $dbName = "tms_db";         
+            $dbh = new PDO('mysql:host=localhost;dbname=tms_db', $dbUsername,$dbPassword);           
             return $dbh;
             }catch(PDOException $e)
             {
