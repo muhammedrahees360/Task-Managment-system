@@ -10,22 +10,18 @@ if(isset($_POST['saveUser'])){
     'userrole'=> $_POST['user_role']
     ]; 
     $user = new userContr;
-
-    $result = $user->create($inputData);
-   
+    $result = $user->create($inputData); 
     if($result)
        {
         header('location:addvendor.php?error=somethingWrong!');
        }else
           {
-            header("location:displayuser.php?success='useradded'");
-          
+            header("location:displayuser.php?success='useradded'");         
           }
 }
 if(isset($_POST['deleteUser']))
 {
     $user_id = $_POST['deleteUser'];
-    
     $user = new userContr;
     $result = $user->delete($user_id);
     if($result)
