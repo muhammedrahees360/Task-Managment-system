@@ -6,13 +6,14 @@ session_start();
     echo "<br>";
     include "dbh.classes.php";
     include "controller/vendorController.php";
-    if(isset($_GET["error"])){
-  
+    if(isset($_GET["error"])){ 
         if($_GET["error"] == 'stmtfailed'){
           echo "<p>Something went wrong,try again</p>";
         }
         elseif($_GET["error"] == 'none'){
-          echo "<p style='color:green;'>Login Successful</p>";
+
+          echo "<p style='color:green;margin-left:20px;'>Login Successful</p>";
+
         }elseif($_GET["error"] == 'dataisnotdeleted'){
             echo "<p style='color:red;'>Data is not Deleted</p>";
           }elseif($_GET["error"] == 'userinvalid'){
@@ -45,9 +46,6 @@ session_start();
 <form action="addvendor.php" method="POST">
             <button type="submit" class="btn btn btn-primary" style="float: right;margin-right: 10px;padding: 5px;margin-bottom:6px;" >+Add Vendor</button>
         </form>
-        <!-- <form action="addUserview.php" method="POST">
-        <button type="submit" name="deleteUser" class="btn btn btn-primary" style="float: right;margin-right: 10px;padding: 5px;" value="<?= $row["user_id"] ?>" >+Add User</button>
-        </form>  -->
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -75,9 +73,7 @@ session_start();
                         $value='user_id';
                         $uid=$row['users_id'];
                         $user_email=$student->getuser($uid,$value,$select); 
-                        $user_fullname=$student->getuser($uid,$value,$select_fullname);
-                        
-                       
+                        $user_fullname=$student->getuser($uid,$value,$select_fullname);                      
         ?>
             <tr>
                 <td><?= $row["project_id"] ?></td>
@@ -99,8 +95,7 @@ session_start();
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-    
+      <div class="modal-body">   
       </div>
       <div class="modal-footer">
         <form action="projectupdate.php" method="POST">
@@ -122,8 +117,7 @@ session_start();
                 </tr>
         <?php
                   }
-            }
-                      
+            }                     
         ?>
         <?php
                 $uid=$row["users_id"];
@@ -133,8 +127,7 @@ session_start();
                 $select ='user_name';
                 $getuser = $studentgetuser->getuser($uid,$value,$select);
                 if($getuser){          
-                }
-            
+                }            
         ?>
          
     </tbody>

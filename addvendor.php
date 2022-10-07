@@ -24,13 +24,10 @@ session_start();
              $select ='user_name';
              $uid =2;
              $getusername = new vendorController;
-             $username = $getusername->getuser($uid,$value,$select);
-                  
+             $username = $getusername->getuser($uid,$value,$select);                  
         ?>
     <a  class="btn btn-dark" href="insertuser.php">Back</a>  
-    
-                   
-                   
+
                     <?php
                 
                     if($username){
@@ -46,11 +43,9 @@ session_start();
                    <?php
                     
                     for ($h=0;$h<$num;$h++){
-                    ?>
-                         
-                            <option value="<?=$username[$h]['user_name']?>"><?=$username[$h]['user_name']?></option>
-                          
-               
+
+                    ?>                         
+                            <option value="<?=$username[$h]['user_name']?>"><?=$username[$h]['user_name']?></option>               
                       <?php
                     }
                     ?>
@@ -80,8 +75,7 @@ session_start();
                     <?php
                 }else{
                   ?>
-                 <br>
-                  
+                 <br>                  
                   <form style="width: 400px;margin: auto;border-radius: 5px;padding: 56px 40px;" action="addUserview.php" method="POST">
                   <!-- <h2><center>Add Vendor</center></h2> -->
                   <center><label style="color:red ;">No user found, Create one!</label></center><br>
@@ -93,11 +87,6 @@ session_start();
                   <?php
             }
                       ?> 
-                       
-                         
-                    
-    
-     
         <script type="text/javascript">
                     function valid()
                     {
@@ -128,12 +117,10 @@ session_start();
                         return true;
                     }
         </script>
-
     </body>
 </html>
 <?php
     }else{
         header("location:index.php");
     }
-
 ?>  

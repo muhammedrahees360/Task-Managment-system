@@ -2,6 +2,7 @@
 class Dbh{
     protected function connect(){
         try{           
+
             $dbUsername="afna";
             $dbPassword ="Afna@1999";
              $dbName = "tms_db1";         
