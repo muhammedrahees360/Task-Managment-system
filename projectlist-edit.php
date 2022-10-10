@@ -52,7 +52,7 @@
         <br>
         <div class="form-group col-md-6" style="margin: auto;">
         <label for="inputname">Description</label>
-        <input type="text" class="form-control"  value="<?= $result[0]['description']?>" name="description" >
+        <textarea type="text" class="form-control"  value="<?= $result[0]['description']?>" name="description" ></textarea>
         </div>
         <br>
         <div class="col-md-6" style="display:flex;margin:auto;">
