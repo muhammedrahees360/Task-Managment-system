@@ -23,7 +23,7 @@ if(isset($_POST['deleteUser']))
 {
     $user_id = $_POST['deleteUser'];
     $user = new userContr;
-    $result = $user->delete($user_id);
+    $result = $user->delete($delete_user_id);
     if($result)
     {
         header("Location:displayuser.php?error=datadeleted");
