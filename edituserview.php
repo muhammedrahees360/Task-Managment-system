@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="padding:2vw ;">
-<a class="btn btn-primary" href="displayuser.php">Back</a>  
+<a class="btn btn-dark" href="displayuser.php">Back</a>  
 <br><br>
 <div class="container">
   <h3>Edit User Details</h3>
