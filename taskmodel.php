@@ -68,47 +68,46 @@ if(isset($_POST['savetask']))
                                                     }
                                         }else{
                                            
-                                                header("Location: taskdisp.php?id=$projectid") ;
+                                                header("Location: taskdisp.php?id=$projectid&success=taskadded") ;
                                             }       
                 }
 
-                if(isset($_POST['taskcomment']))
-                {
-                    $comment = $_POST['taskcomment'];
-                    
-                    $user = new taskContr;
-                    $result = $user->setcomment($comment);
-                    
-                }
-                if(isset($_POST['deletetask']))
-{
-    $task_id = $_POST['deletetask'];
-    $user = new taskContr;
-    $result = $user->delete($task_id);
-    $id=$_SESSION['projectidadmin'];
-    if($result)
-    {
-        header("Location:taskdisp.php?id=$id");
-        exit(0);
-    }
-    else
-    {
-        header("Location:taskdisp.php?error=somethingwrong!");
-        exit(0);
-    }
-}
+if(isset($_POST['taskcomment']))
+         {
+            $comment = $_POST['taskcomment'];  
+            $tasktitle= $_POST['taskttitle'];         
+            $user = new taskContr;
+            $result = $user->setcomment($comment,$tasktitle);                           
+                        }
+if(isset($_POST['deletetask']))
+        {
+            $task_id = $_POST['deletetask'];
+            $user = new taskContr;
+            $result = $user->delete($task_id);
+            $id=$_SESSION['projectidadmin'];
+            if($result)
+            {
+                header("Location:taskdisp.php?id=$id");
+                exit(0);
+            }
+            else
+            {
+                header("Location:taskdisp.php?error=somethingwrong!");
+                exit(0);
+            }
+        }
 
 if(isset($_POST['editTask']))
- { 
-    $task_id = $_POST['task_id'];
-    $inputData = [
-        'task_title'=> $_POST['task_title'],
-        'enddate'=> $_POST['enddate'],
-        'priority'=> $_POST['priority'],
-        'description'=> $_POST['description']
-    ];
-    
-    $user = new taskContr;
+        { 
+            $task_id = $_POST['task_id'];
+            $inputData = [
+                'task_title'=> $_POST['task_title'],
+                'enddate'=> $_POST['enddate'],
+                'priority'=> $_POST['priority'],
+                'description'=> $_POST['description']
+            ];
+            
+            $user = new taskContr;
 
-    $result = $user->update($inputData,$task_id);
- }
+            $result = $user->update($inputData,$task_id);
+        }

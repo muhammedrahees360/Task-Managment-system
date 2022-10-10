@@ -17,7 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="padding: 3vw;">
-<a class="btn btn-primary" href="user.php">Back</a><br>
+<a class="btn btn-dark" href="user.php">Back</a><br>
 <div class="container" style="padding: 1vw;">
   <h3>Edit Task details</h3><hr>
   <?php

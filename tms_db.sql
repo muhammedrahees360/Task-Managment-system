@@ -19,7 +19,7 @@ CREATE TABLE tbuser(
     
 /* insert value into user table */
 
-INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','123','1','1','1') ;
+INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','$2y$10$zfuB50Byr0z3gVWj3hdZWec3VuRD4lg1JBnJmosbxKQw8EwWSEy1q','1','1','1') ;
     
 /*project list code*/
     

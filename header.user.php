@@ -16,9 +16,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a style="color:white!important" class="nav-link" href="user.php">Dashboard</a>
-        </li>
         <li class="nav-item">
           <a style="color:white!important" class="nav-link" href="logout.inc.php">Logout</a>
         </li>

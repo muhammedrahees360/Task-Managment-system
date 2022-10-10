@@ -1,18 +1,12 @@
 <?php
 session_start();
 include 'login.inc.php';
-
-if(isset($_GET["success"])){
-  
+if(isset($_GET["success"])){ 
   if($_GET["success"] == 'logout'){
     echo "<p ><center style='color:green;'>Logout Successfull</p></center>";
   }elseif($_GET["success"] == 'linksendtoemail'){
     echo "<p ><center style='color:green;'>Link Send To Your Mail</p></center>";
   }
-  
-  
- 
-
 }
 ?>
 <!DOCTYPE html>
@@ -43,6 +37,8 @@ if(isset($_GET["success"])){
   }
   elseif($_GET["error"] == 'invalidusername'){
     echo "<p ><center style='color:red;'>Invalid username!!</p></center>";
+  }elseif($_GET["error"] == 'invaliemailentered'){
+    echo "<p ><center style='color:red;'>Invalid Email!!</p></center>";
   }
   elseif($_GET["error"] == 'wrongpassword'){
     echo "<center><p style='color:red;'>Wrong Password</p></center>";
@@ -53,9 +49,7 @@ if(isset($_GET["success"])){
   }elseif($_GET["error"] == 'passwordupdated'){
     echo "<p><center>Password Updated</p></center>";
   }
-
 }
-
 ?>
                         <div class="form-outline form-white mb-4">
                             <label class="form-label" for="typeEmailX">Username</label>
@@ -80,8 +74,6 @@ if(isset($_GET["success"])){
   </div>
 </section>
 <?php
-
-
 ?>
 </body>
 </html>

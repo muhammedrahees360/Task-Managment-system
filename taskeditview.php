@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body style="padding:4vw ;">
-<a  class="btn btn-primary" href="taskdisp.php?id=<?=$_SESSION['projectidadmin']?>">Back</a>
+<a  class="btn btn-dark" href="taskdisp.php?id=<?=$_SESSION['projectidadmin']?>">Back</a>
 <div class="container">
   <h3>Edit Task details</h3>
   <?php

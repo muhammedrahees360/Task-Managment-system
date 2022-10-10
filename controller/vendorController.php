@@ -125,18 +125,11 @@ class vendorController extends Dbh {
 
     public function update($inputData,$id)
             {
-                
-                
-                
                 $vendorname = $inputData['vendorname'];
                 $projectname = $inputData['projectname'];
-               
-                // $email = $inputData['email'];
                 $duedate = $inputData['duedate'];
-                $description = $inputData['description'];
-                
-                $stmt= $this->connect()->prepare("UPDATE tbproject_list SET vendor_name=?,project_name= ? ,description= ? ,end_date= ? WHERE project_id= ? LIMIT 1");
-              
+                $description = $inputData['description'];   
+                $stmt= $this->connect()->prepare("UPDATE tbproject_list SET vendor_name=?,project_name= ? ,description= ? ,end_date= ? WHERE project_id= ? LIMIT 1");              
                 if(!$stmt->execute(array($vendorname,$projectname,$description,$duedate,$id))){
                     $stmt = null;
                     header("location: admin.php?error=stmtfailedupdate");
@@ -149,7 +142,7 @@ class vendorController extends Dbh {
                     header("location: admin.php?error=invaliemailentered");
                     exit();
                 }
-                header('location:insertuser.php?valueupdated');
+                header('location:insertuser.php?success=valueupdated');
 
 
             }
