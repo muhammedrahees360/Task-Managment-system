@@ -1,9 +1,9 @@
 <?php
 session_start();
-include('dbh.classes.php');
-include('controller/vendorController.php');
-if (isset($_SESSION['useruid'])) {
-    include('header.admin.php');
+    include('dbh.classes.php');
+    include('controller/vendorController.php');
+    if(isset( $_SESSION['useruid'])){
+    include ('header.admin.php');
     echo "<br>";
     echo "<br>";
     echo "<br>";

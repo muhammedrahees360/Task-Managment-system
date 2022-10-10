@@ -19,7 +19,7 @@ CREATE TABLE tbuser(
     
 /* insert value into user table */
 
-INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','$2y$10$zfuB50Byr0z3gVWj3hdZWec3VuRD4lg1JBnJmosbxKQw8EwWSEy1q','1','1','1') ;
+INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','$2y$10$f9QYxnJVh/f63XStpzvF6Oo4p6SEWOI7F3tGkCZoHTp8ECM9plZsa','1','1','1') ;
     
 /*project list code*/
     
@@ -33,8 +33,10 @@ INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `cre
     created_at datetime not null DEFAULT CURRENT_TIMESTAMP,
     updated_at datetime NOT null DEFAULT CURRENT_TIMESTAMP,
     created_by int not null,
+
     updated_by int not null);
     
+
 /* task title_tables code */
     
     CREATE TABLE tbtask_title(

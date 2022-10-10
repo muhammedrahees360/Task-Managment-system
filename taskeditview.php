@@ -4,8 +4,7 @@
  include "controller/taskController.php";
  if(isset( $_SESSION['useruid'])){
  $date = date('Y-m-d');
- if(isset($_GET["error"])){
-  
+ if(isset($_GET["error"])){  
   if($_GET["error"] == 'stmtfailed'){
     echo "<p>Something went wrong,try again</p>";
   }

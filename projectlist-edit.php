@@ -43,9 +43,7 @@
             <label for="inputname">Project</label>
             <input type="text" class="form-control" value="<?= $result[0]['project_name']?>" name="projectname" >
             </div>
-            <br>
-       
-    
+            <br>  
         <br>
         <div class="form-group col-md-6" style="margin: auto;">
         <label for="inputname">Due Date</label>

@@ -51,63 +51,21 @@ if(isset($_POST['savetask']))
                                                                     $img_upload_path = 'Uploads/'.$new_img_name;                                                                   
                                                                      move_uploaded_file($tmp_name,$img_upload_path);
                                                                     $uploadimage = new taskContr;                                                        
-                                                                    $resultoftask = $uploadimage->uploadimage($new_img_name,$taskid );
-                                                                    header("Location: taskdisp.php?id=$projectid") ;
-                                                                    exit();  
-                                                                    // echo
-                                                                    // "
-                                                                    // <script>
-                                                                    // alert('new task added');
-                                                                    // document.location.href = 'taskdisp.php?id=$projectid';
-                                                                    // </script>
-                                                                    // ";
+                                                                    $resultoftask = $uploadimage->uploadimage($new_img_name,$taskid );  
+                                                                    echo
+                                                                    "
+                                                                    <script>
+                                                                    alert('new task added');
+                                                                    document.location.href = 'taskdisp.php?id=$projectid';
+                                                                    </script>
+                                                                    ";
                                                                 }else{
                                                                         $em = "youcantuploadthefileofthistype";
                                                                         header("Location: newtaskview.php?error=$em") ;
                                                                     }
                                                     }
                                         }else{
-                                           
-                                                header("Location: taskdisp.php?id=$projectid&success=taskadded") ;
+                                                $em = "unknown error occured!";
+                                                header("Location: taskdisp.php?id=$projectid") ;
                                             }       
                 }
-
-if(isset($_POST['taskcomment']))
-         {
-            $comment = $_POST['taskcomment'];  
-            $tasktitle= $_POST['taskttitle'];         
-            $user = new taskContr;
-            $result = $user->setcomment($comment,$tasktitle);                           
-                        }
-if(isset($_POST['deletetask']))
-        {
-            $task_id = $_POST['deletetask'];
-            $user = new taskContr;
-            $result = $user->delete($task_id);
-            $id=$_SESSION['projectidadmin'];
-            if($result)
-            {
-                header("Location:taskdisp.php?id=$id");
-                exit(0);
-            }
-            else
-            {
-                header("Location:taskdisp.php?error=somethingwrong!");
-                exit(0);
-            }
-        }
-
-if(isset($_POST['editTask']))
-        { 
-            $task_id = $_POST['task_id'];
-            $inputData = [
-                'task_title'=> $_POST['task_title'],
-                'enddate'=> $_POST['enddate'],
-                'priority'=> $_POST['priority'],
-                'description'=> $_POST['description']
-            ];
-            
-            $user = new taskContr;
-
-            $result = $user->update($inputData,$task_id);
-        }
