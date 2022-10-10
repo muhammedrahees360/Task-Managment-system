@@ -26,7 +26,7 @@
     
 </head>
 <body style="padding: 4vw;" >
-    <a  class="btn btn-primary" href="insertuser.php">Back</a>  
+    <a  class="btn btn-dark" href="insertuser.php">Back</a>  
     <h2><center>Users List</center><hr></h2>
     <form style="float:right;padding:5px" action="addUserview.php" method="POST">
         <button type="submit"  class="btn btn-primary" value="<?= $row["user_id"] ?>">+Add User</button>
