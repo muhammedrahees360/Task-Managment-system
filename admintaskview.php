@@ -27,7 +27,7 @@ if(isset( $_SESSION['useruid'])){
     $idgiveback=$_SESSION['projectidadmin'];
     $index = 0;
 ?>  
-<a  class="btn btn-primary" href="taskdisp.php?id=<?=$idgiveback?>">Back</a>  
+<a  class="btn btn-dark" href="taskdisp.php?id=<?=$idgiveback?>">Back</a>  
     <div style="margin: 10px;padding: 10px;">
         <dl class="row">
             <dd class="col-sm-3">Task Name :<?=$result[0]['task_title']?></dd>
