@@ -23,7 +23,7 @@ session_start();
   </div>
   <div class="col-md-6">
       <label for="inputEmail4" class="form-label">Description</label>
-      <input type="text" class="form-control" required id="inputEmail4" name="description">
+      <textarea type="text" class="form-control" required id="inputEmail4" name="description"></textarea>
   </div>
   <div class="col-md-6">
       <label for="inputPassword4" class="form-label">Due Date</label>
