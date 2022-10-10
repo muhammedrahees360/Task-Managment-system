@@ -65,7 +65,7 @@ session_start();
                 </div>
                 <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description :</label>
-                        <input type="text" class="form-control" name="description" placeholder="description" >
+                        <textarea  type="text" class="form-control" name="description" placeholder="description" ></textarea>
                 
                 </div>
                 <input class="btn btn-success" type="submit" name="addvendor" value="Add Vendor" >
