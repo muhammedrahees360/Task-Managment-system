@@ -55,7 +55,7 @@
         </style>
 </head>
 <body style="padding: 3vw;">
-    <a  class="btn btn-primary" href="user.php">Back</a> 
+    <a  class="btn btn-dark" href="user.php">Back</a> 
   
         <div class="container">
     <h1 class="h3 mb-3">Activities</h1>
