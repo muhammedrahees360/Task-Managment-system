@@ -19,7 +19,7 @@ CREATE TABLE tbuser(
     
 /* insert value into user table */
 
-INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','123','1','1','1') ;
+INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `created_by`, `updated_by`) VALUES ('admin','testadmin','rahees@terrificminds.com','$2y$10$f9QYxnJVh/f63XStpzvF6Oo4p6SEWOI7F3tGkCZoHTp8ECM9plZsa','1','1','1') ;
     
 /*project list code*/
     
@@ -33,10 +33,10 @@ INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `cre
     created_at datetime not null DEFAULT CURRENT_TIMESTAMP,
     updated_at datetime NOT null DEFAULT CURRENT_TIMESTAMP,
     created_by int not null,
+
     updated_by int not null);
     
-    INSERT INTO `tbproject_list`( `vendor_name`, `project_manager`, `pm_email`, `project_name`, `description`, `end_date`, `users_id`,`created_by`, `updated_by`) VALUES ('Muhammed','Rahees','mhd.rahees360@gmail.com','Terrific minds','Its a good work','2000-09-09','1','1','1');
-    
+
 /* task title_tables code */
     
     CREATE TABLE tbtask_title(
