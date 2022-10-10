@@ -75,5 +75,4 @@ if (isset($_SESSION['useruid'])) {
 } else {
     header("location:index.php");
 }
-
 ?>

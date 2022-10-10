@@ -2,8 +2,9 @@
 class Dbh{
     protected function connect(){
         try{           
-            $dbUsername="rahees";
-            $dbPassword ="Admin@123";
+
+            $dbUsername="afna";
+            $dbPassword ="Afna@1999";
              $dbName = "tms_db";         
             $dbh = new PDO('mysql:host=localhost;dbname=tms_db', $dbUsername,$dbPassword);           
             return $dbh;

@@ -1,6 +1,5 @@
 <?php
 include('dbh.classes.php');
-
 include('controller/vendorController.php');
 
 if (isset($_POST['deleteUser'])) {

@@ -92,15 +92,32 @@ if (isset($_SESSION['useruid'])) {
 
         ?>
             <tr>
-              <td><?= $row["project_id"] ?></td>
-              <td><?= $row["vendor_name"] ?></td>
-              <td> <?= $row["project_name"] ?> </td>
-              <td> <?= $user_fullname[0]['full_name'] ?> </td>
-              <td> <?= $user_email[0]['email'] ?> </td>
-              <td><a href="projectlist-edit.php?id=<?= $row["project_id"] ?>" class="btn btn-success">Edit</a> </td>
-              <td>
-                <form action="projectupdate.php" method="POST">
-                  <button type="button" name="deleteUser" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger" value="<?= $row["project_id"] ?>">Delete</button>
+                <td><?= $row["project_id"] ?></td>
+                <td><?= $row["vendor_name"] ?></td>
+                <td> <?= $row["project_name"] ?> </td>           
+                <td> <?= $user_fullname[0]['full_name'] ?>  </td>      
+                <td> <?= $user_email[0]['email'] ?> </td>       
+                <td><a href="projectlist-edit.php?id=<?= $row["project_id"] ?>" class="btn btn-success">Edit</a> </td>                            
+                <td><form action="projectupdate.php" method="POST">
+                        <button type="button" name="deleteUser"  data-toggle="modal" data-target="#exampleModal"  class="btn btn-danger" value="<?= $row["project_id"] ?>">Delete</button>
+                    </form>  
+                    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete this record</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">   
+      </div>
+      <div class="modal-footer">
+        <form action="projectupdate.php" method="POST">
+         
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" name="deleteUser"  value="<?= $row["project_id"] ?>" >Delete</button>
                 </form>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -134,9 +151,9 @@ if (isset($_SESSION['useruid'])) {
               </td>
             </tr>
         <?php
-          }
-        }
-
+                  }
+            }
+                      
         ?>
         <?php
         $uid = $row["users_id"];
@@ -159,8 +176,14 @@ if (isset($_SESSION['useruid'])) {
 
   </html>
 <?php
-} else {
-  header("location:index.php");
-}
-
+    }else{
+        header("location:index.php");
+    }
+    if(isset($_GET["success"])){
+      if($_GET["success"] == 'datadeleted'){
+          echo "<p style='color:green;'>Data is Deleted</p>";
+        }elseif($_GET["success"] == 'userisadded'){
+          echo "<p>Vendor added successfully</p>";
+        }
+    }
 ?>
