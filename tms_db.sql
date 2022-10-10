@@ -33,7 +33,10 @@ INSERT INTO `tbuser`( `user_name`,`full_name`, `email`, `pwd`, `user_role`, `cre
     created_at datetime not null DEFAULT CURRENT_TIMESTAMP,
     updated_at datetime NOT null DEFAULT CURRENT_TIMESTAMP,
     created_by int not null,
-    updated_by int not null);    
+
+    updated_by int not null);
+    
+
 /* task title_tables code */
     
     CREATE TABLE tbtask_title(
