@@ -19,7 +19,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
 <body style="padding:4vw">
-<a class="btn btn-primary" href="insertuser.php" >Back</a>
+<a class="btn btn-dark" href="insertuser.php" >Back</a>
 <div style="margin-top:20px">
         <h2><center>EDIT </center></h2>
 <?php
