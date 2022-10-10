@@ -37,6 +37,8 @@ if(isset($_GET["success"])){
   }
   elseif($_GET["error"] == 'invalidusername'){
     echo "<p ><center style='color:red;'>Invalid username!!</p></center>";
+  }elseif($_GET["error"] == 'invaliemailentered'){
+    echo "<p ><center style='color:red;'>Invalid Email!!</p></center>";
   }
   elseif($_GET["error"] == 'wrongpassword'){
     echo "<center><p style='color:red;'>Wrong Password</p></center>";

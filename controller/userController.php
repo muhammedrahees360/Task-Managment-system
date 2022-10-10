@@ -88,7 +88,7 @@ public function update($inputData,$user_id)
         $stmt = null;
         header('location:displayuser.php?error=somethingWrong!');
     }
-    header('location:displayuser.php?valueupdated');
+    header('location:displayuser.php?success=valueupdated');
     exit();
 }
 public function getuser($uid)

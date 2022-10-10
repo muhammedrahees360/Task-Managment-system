@@ -4,10 +4,18 @@
         include('dbh.classes.php');
         include "controller/taskController.php";   
         include 'header.admin.php';
-        // include 'userfunction.php';
         echo"<br>";
         echo"<br>";
         echo"<br>";
+        if (isset($_GET["success"])) {
+            if ($_GET["success"] == 'valueupdated') {
+                echo "<center><p style='color:green;'>Value Updated</p></center>";
+            } elseif ($_GET["success"] == 'userisadded') {
+              echo "<center><p>Vendor added successfully</p></center>";
+            } elseif ($_GET["success"] == 'taskadded') {
+                echo "<center><p style='color:green;'>Task added successfully</p></center>";
+              }
+          }
 ?>
 <!DOCTYPE html>
     <html lang="en">
@@ -19,7 +27,7 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         </head>
         <body style="padding: 3vw;">
-                <a  class="btn btn-primary" href="insertuser.php">Back</a> 
+                <a  class="btn btn-dark" href="insertuser.php">Back</a> 
                 <h2><hr> Project Progress</h2>
                 <?php
                         if(isset($_POST['viewproject']))
@@ -39,8 +47,10 @@
                         if($result)
                             {
                                 foreach($result as $row)
-                                    {                                     
-                                        $_SESSION['projectname']=$row["project_name"];                                                                   
+                                    {
+                                     
+                                        $_SESSION['projectname']=$row["project_name"];
+                                                                   
                 ?>
                 <div style="border: 1px solid black;margin: 30px;padding: 30px;">
                         <dl class="row">
@@ -145,7 +155,8 @@
 
                                             <?php
                                         }
-                                        }else{                                        
+                                        }else{
+                                        
                                             echo "No Task Added";
                                         }
                                 ?>  
