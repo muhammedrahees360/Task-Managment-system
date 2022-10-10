@@ -1,6 +1,8 @@
 <?php
-    include "dbh.classes.php";
-    include "userController.php";
+    session_start();
+ include('dbh.classes.php');
+    include "controller/userController.php";
+    if(isset( $_SESSION['useruid'])){
     include 'header.admin.php';
     echo "<br>";
     echo "<br>";
@@ -15,12 +17,15 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         </head>
         <body style="padding:3vw ;">
-        <a class="btn btn-primary" href="displayuser.php">Back</a>  
+        <a class="btn btn-dark" href="displayuser.php">Back</a>  
             <h2><center>Add User</center></h2><hr>
-            <form class="row g-3" method="POST" action="addUser.php">
+            <form class="row g-3" method="POST" action="adduser.model.php">
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Username</label>
                     <input type="text" class="form-control" required id="inputEmail4" name="user_name">
+                </div><div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" required id="inputEmail4" name="full_name">
                 </div>
                 <div class="col-md-6">
                     <label for="inputEmail4" class="form-label">Email</label>
@@ -31,9 +36,9 @@
                     <input type="password" class="form-control" required id="inputPassword4" name="pwd">
                 </div>
                 <div class="col-md-4">
-                    <label for="inputState" class="form-label">Choose you Role</label>
+                    <label for="inputState" class="form-label">Role</label>
                     <select name="user_role" id="inputState" class="form-select">
-                        <option selected>Choose...</option>
+                        
                         <option value="1">Admin</option>
                         <option value="2">Project Manager</option>
                     </select>
@@ -45,3 +50,9 @@
             </form>
         </body>
     </html>
+    <?php
+    }else{
+        header("location:index.php");
+    }
+
+?>  
