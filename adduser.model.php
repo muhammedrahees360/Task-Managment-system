@@ -21,7 +21,7 @@ if(isset($_POST['saveUser'])){
 }
 if(isset($_POST['deleteUser']))
 {
-    $user_id = $_POST['deleteUser'];
+    $user_id = $_POST['delete_user_id'];
     $user = new userContr;
     $result = $user->delete($user_id);
     if($result)
