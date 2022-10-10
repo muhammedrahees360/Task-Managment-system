@@ -79,7 +79,7 @@ if(isset($_POST['taskcomment']))
                         }
 if(isset($_POST['deletetask']))
         {
-            $task_id = $_POST['delete_user_id'];
+            $task_id = $_POST['deletetask'];
             $user = new taskContr;
             $result = $user->delete($task_id);
             $id=$_SESSION['projectidadmin'];
